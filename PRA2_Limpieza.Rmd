@@ -1,0 +1,360 @@
+---
+title: "Práctica 2: Limpieza y análisis de datos"
+author: <center> David Dávila y Mónica Gómez </center> 
+date: <center> 21/12/2020 </center> 
+output:
+  pdf_document:
+    toc: yes
+    number_sections: true
+    highlight: zenburn
+    code_folding: show
+    theme: spacelab
+    collapse: no
+  html_document:
+    toc: yes
+    number_sections: true
+    df_print: paged
+    highlight: zenburn
+    code_folding: show
+    theme: spacelab
+    collapse: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r message=FALSE, warning=FALSE}
+getwd()
+```
+
+
+******
+# Limpieza de los datos
+******
+
+## Carga del archivo 
+
+```{r message=FALSE}
+getwd()
+```
+
+Se procede a abrir el archivo formato .csv y examinar el tipo de datos con los que R ha interpretado cada variable. 
+```{r}
+mydata <- data.frame(read.csv("C:\\Users\\David\\Dropbox\\Data Science\\Máster Universitario en Ciencia de Datos\\Materias\\Semestre 2\\Tipología y ciclo de vida de los datos\\Prácticas\\PRA2\\Entrega\\data\\BankChurners.csv", header=TRUE))
+df <- data.frame(mydata)
+attach(df)
+head(df)
+```
+
+## Análisis del archivo 
+
+Reviso el resumen del dataframe:
+```{r}
+summary(df)
+```
+
+Reviso la estructura del dataframe:
+
+```{r message=FALSE, warning=FALSE}
+str(df) 
+```
+
+## Selección de los datos de interés
+
+Para el presente proyecto se utilizarán todas las variables presentes en el juego de datos a excepción de las dos últimas que no serán de utilidad en los análisis que se planean hacer a posteriori.
+
+```{r}
+df <- df[,-(22:23)]
+names(df)
+```
+
+Elaboro gráficas por variable para tener un primer acercamiento sobre su comportamiento  
+
+```{r message=FALSE, warning=FALSE}
+library(ggplot2)
+
+par(mfrow=c(2,2))
+
+p1 <- plot(CLIENTNUM, main="CLIENTNUM")
+p2 <- plot(as.factor(Attrition_Flag), main="Attrition_Flag")
+p3 <- plot(Customer_Age, main="Customer_Age")
+p4 <- plot(as.factor(Gender), main="Gender")
+p5 <- plot(Dependent_count, main="Dependent_count")
+p6 <- plot(as.factor(Education_Level), main="Education_Level")
+p7 <- plot(as.factor(Marital_Status), main="Marital_Status") 
+p8 <- plot(as.factor(Income_Category), main="Income_Category")    
+p9 <- plot(as.factor(Card_Category), main="Card_Category")  
+p10 <- plot(Months_on_book, main="Months_on_book")
+p11 <- plot(as.factor(Total_Relationship_Count), main="Total_Relationship_Count")
+p12 <- plot(Months_Inactive_12_mon, main="Months_Inactive_12_mon")  
+p13 <- plot(Contacts_Count_12_mon, main="Contacts_Count_12_mon")  
+p14 <- plot(Credit_Limit, main="Credit_Limit")  
+p15 <- plot(Total_Revolving_Bal, main="Total_Revolving_Bal")  
+p16 <- plot(Avg_Open_To_Buy, main="Avg_Open_To_Buy")  
+p17 <- plot(Total_Amt_Chng_Q4_Q1, main="Total_Amt_Chng_Q4_Q1")  
+p18 <- plot(Total_Trans_Amt, main="Total_Trans_Amt")  
+p19 <- plot(Total_Trans_Ct, main="Total_Trans_Ct")  
+p20 <- plot(Total_Ct_Chng_Q4_Q1, main="Total_Ct_Chng_Q4_Q1")  
+p21 <- plot(Avg_Utilization_Ratio, main="Avg_Utilization_Ratio")  
+#p22 <- plot(Naive_Bayes_Classifier_Attrition_Flag_Card_Category_Contacts_Count_12_mon_Dependent_count_Education_Level_Months_Inactive_12_mon_1, main="Naive_Bayes_Classifier_1")  
+#p23 <- plot(Naive_Bayes_Classifier_Attrition_Flag_Card_Category_Contacts_Count_12_mon_Dependent_count_Education_Level_Months_Inactive_12_mon_2, main="Naive_Bayes_Classifier_2")  
+```
+
+Los gráficos generados nos permiten explorar los datos de forma preliminar. Algunos de los insights que se pueden extraer son:
+
+Variables cuantitativas: presentan una alta dispersión en sus datos.
+
+Variables cuanlitativas: se puede observar que el banco en cuestión presenta una mayor cantidad de clientes con cuentas activas que inactivas, existen más mujeres que hombres, la mayoría están solteros o casados  con estudios terminados y que usan la tarjeta de crédito categoría “Blue”.
+
+******
+##  Normalización de los datos cuantitativos y cualitativos
+******
+
+Estas normalizaciones tienen como objetivo uniformizar los formatos. En este caso no es necesario normalizarlos. Sin embargo, los valores perdidos o valores extremos (de haberlos), se tratarán más adelante.
+
+Se detallan los tipos de datos por variable:  
+
+```{r}
+sapply(df, function(x) class(x))
+```
+
+******
+## Ceros y elementos vacíos
+******
+
+Este dataset en particular presenta una completitud del 100% como se demuestra a continuación:    
+
+```{r}
+sapply(df, function(x) sum(is.na(x)))
+```
+ 
+******
+## Valores extremos
+******
+
+Se procede a hacer la exploración de outliers con el diagráma de caja y bigote, para posteriormente de acuerdo a un análisis por cada variable extraer e imputar los valores con la mediana de aquellas variables donde se haya considerado meritorio hacerlo.  
+
+```{r}
+
+par(mfrow=c(2,2))
+
+p1 <- boxplot(CLIENTNUM, main="CLIENTNUM")
+p3 <- boxplot(Customer_Age, main="Customer_Age")
+p5 <- boxplot(Dependent_count, main="Dependent_count")
+p10 <- boxplot(Months_on_book, main="Months_on_book")
+p12 <- boxplot(Months_Inactive_12_mon, main="Months_Inactive_12_mon")
+p13 <- boxplot(Contacts_Count_12_mon, main="Contacts_Count_12_mon")  
+p14 <- boxplot(Credit_Limit, main="Credit_Limit")  
+p15 <- boxplot(Total_Revolving_Bal, main="Total_Revolving_Bal")  
+p16 <- boxplot(Avg_Open_To_Buy, main="Avg_Open_To_Buy")  
+p17 <- boxplot(Total_Amt_Chng_Q4_Q1, main="Total_Amt_Chng_Q4_Q1")  
+p18 <- boxplot(Total_Trans_Amt, main="Total_Trans_Amt")  
+p19 <- boxplot(Total_Trans_Ct, main="Total_Trans_Ct")  
+p20 <- boxplot(Total_Ct_Chng_Q4_Q1, main="Total_Ct_Chng_Q4_Q1")  
+p21 <- boxplot(Avg_Utilization_Ratio, main="Avg_Utilization_Ratio")  
+```
+
+
+De los diagramas se puede extraer la siguiente información:
+
+- Simetría de la distribución de los datos.
+- Detectar la presencia de valores atípicos o outliers.
+- Ver cómo es la dispersión de los puntos con la mediana, los percentiles 25 y 75 y los valores máximos y mínimos.
+
+Al revisar los diagramas generados se encuentra que:
+
+La distribución no es simétrica para la mayoría de variables, y es simétrica en los casos de: "Customer_Age", "Dependent_count" y "Months_on_book". 
+
+******
+### Customer_Age
+******
+
+```{r}
+x<-boxplot.stats(Customer_Age)$out
+idx <- which(Customer_Age %in% x)
+ca <- df$Customer_Age[idx] #Valores atípicos
+min(ca)
+max(ca)
+length(ca)
+ca
+```
+En este caso, es un poco extraño que únicamente 2 de 10 mil clientes superen los 70 años y por ello se puede considerar que se trata de valores que probablemente se ingresaron o calcularon erróneamente. Si se tuviera la fecha de nacimiento sería fácil comprobar la edad real de ese par de clientes, sin embargo al desconocer ese dato se procede a imputar.
+
+```{r}
+df$Customer_Age[df$Customer_Age>69] <- NA #Dejamos en NA solo los más extremos
+df$Customer_Age[idx]
+boxplot(df$Customer_Age)
+```
+
+```{r}
+idx <- which(is.na(df$Customer_Age))
+length(idx) #número de valores perdidos
+
+for (i in 1:length(idx)){
+index <- idx[i]
+df[index,]$Customer_Age <- median(df$Customer_Age, na.rm=TRUE ) #imputación
+}
+df$Customer_Age[idx] #mostramos el resultado
+```
+
+******
+### Months_on_book
+******
+
+```{r}
+x<-boxplot.stats(Months_on_book)$out
+idx <- which(Months_on_book %in% x)
+mob <- df$Months_on_book[idx] #Valores atípicos
+min(mob)
+max(mob)
+length(mob)
+```
+
+Como se observa, la variable 'Months_on_book' tiene 386 outliers. Sin embargo, dado que representa el período de pertenencia con la entidad financiera en meses va a ser normal el encontrar clientes muy antiguos (56 meses) o muy recientes (13 meses) por lo que no se los eliminará del dataset.
+
+******
+### Months_Inactive_12_mon
+******
+
+```{r}
+x<-boxplot.stats(Months_Inactive_12_mon)$out
+idx <- which(Months_Inactive_12_mon %in% x)
+mi <- df$Months_Inactive_12_mon[idx] #Valores atípicos
+min(mi)
+max(mi)
+length(mi)
+```
+
+La variable 'Months_Inactive_12_mon' tiene 331 outliers. Sin embargo, dado que pueden haber clientes que han permanecido inactivos entre 0-6 meses, este podría ser un parámetro a considerar para saber si el cliente está por suspender o no algún servicio bancario. Por lo tanto, no se los eliminarán del dataset.
+
+******
+### Contacts_Count_12_mon
+******
+
+```{r}
+x<-boxplot.stats(Contacts_Count_12_mon)$out
+idx <- which(Contacts_Count_12_mon %in% x)
+cc <- df$Contacts_Count_12_mon[idx] #Valores atípicos
+min(cc)
+max(cc)
+length(cc)
+```
+
+La variable 'Contacts_Count_12_mon' presenta 629 outliers pero dado el contexto de que pueden haber clientes con los cuales no se ha contactado entre 0-6 meses, este podría ser un parámetro a considerar para saber si el cliente está por suspender o no algún servicio bancario. Por lo tanto, no se los eliminarán del dataset.
+
+******
+### Credit_Limit
+******
+
+```{r}
+x<-boxplot.stats(Credit_Limit)$out
+idx <- which(Credit_Limit %in% x)
+cl <- df$Credit_Limit[idx] #Valores atípicos
+min(cl)
+max(cl)
+length(cl)
+```
+
+Dado que el límite de crédito puede variar dependiendo de muchos factores para a un cliente en específico se opta por mantenerlos.
+
+******
+### Avg_Open_To_Buy
+******
+
+```{r}
+x<-boxplot.stats(Avg_Open_To_Buy)$out
+idx <- which(Avg_Open_To_Buy %in% x)
+avg <- df$Avg_Open_To_Buy[idx] #Valores atípicos
+min(avg)
+max(avg)
+length(avg)
+```
+
+Dado que la variable 'Avg_Open_To_Buy' presenta 963 outliers y representa línea de crédito abierta para compra se mantienen los valores.
+
+******
+### Total_Amt_Chng_Q4_Q1
+******
+
+```{r}
+x<-boxplot.stats(Total_Amt_Chng_Q4_Q1)$out
+idx <- which(Total_Amt_Chng_Q4_Q1 %in% x)
+tac <- df$Total_Amt_Chng_Q4_Q1[idx] #Valores atípicos
+min(tac)
+max(tac)
+length(tac)
+```
+
+La variable 'Total_Amt_Chng_Q4_Q1' tiene 396 outliers y muestra los cambios transaccionales que pueden ser muy variables dependiendo del perfil de cada cliente, así que se opta por mantenerlos.
+
+******
+### Total_Trans_Amt
+******
+
+```{r}
+x<-boxplot.stats(Total_Trans_Amt)$out
+idx <- which(Total_Trans_Amt %in% x)
+tta <- df$Total_Trans_Amt[idx] #Valores atípicos
+min(tta)
+max(tta)
+length(tta)
+```
+
+La variable 'Total_Trans_Amt' tiene 896 outliers y muestra la totalidad de cantidad de transacciones que pueden ser muy variables de persona a persona, así que se opta por mantenerlos.
+
+******
+### Total_Trans_Ct
+******
+
+```{r}
+x<-boxplot.stats(Total_Trans_Ct)$out
+idx <- which(Total_Trans_Ct %in% x)
+ttc <- df$Total_Trans_Ct[idx] #Valores atípicos
+min(ttc)
+max(ttc)
+length(ttc)
+```
+
+La variable 'Total_Trans_Ct' tiene 2 outliers. Es extraño que se existan únicamente dos clientes que durante los últimos 12 meses hayan realizado casi 140 transacciones. Por ello se opta por imputar esos datos.
+
+
+```{r}
+df$Total_Trans_Ct[df$Total_Trans_Ct>137] <- NA #Dejamos en NA solo los más extremos
+df$Total_Trans_Ct[idx]
+boxplot(df$Total_Trans_Ct)
+```
+
+```{r}
+idx <- which(is.na(df$Total_Trans_Ct))
+length(idx) #número de valores perdidos
+
+for (i in 1:length(idx)){
+index <- idx[i]
+df[index,]$Total_Trans_Ct <- median(df$Total_Trans_Ct, na.rm=TRUE ) #imputación
+}
+df$Total_Trans_Ct[idx] #mostramos el resultado
+```
+
+******
+### Total_Ct_Chng_Q4_Q1
+******
+
+```{r}
+x<-boxplot.stats(Total_Ct_Chng_Q4_Q1)$out
+idx <- which(Total_Ct_Chng_Q4_Q1 %in% x)
+tcc <- df$Total_Ct_Chng_Q4_Q1[idx] #Valores atípicos
+min(tcc)
+max(tcc)
+length(tcc)
+```
+
+La variable 'Total_Ct_Chng_Q4_Q1' tiene 394 outliers y muestra el cambio en el conteo de las transacciones que pueden ser muy variables de cliente a cliente, así que se opta por mantenerlos.
+
+******
+## Exportación de los datos preprocesados
+******
+
+```{r}
+# Exportación de los datos limpios en formato .csv
+write.csv(df, "BankChurners_clean.csv")
+```
