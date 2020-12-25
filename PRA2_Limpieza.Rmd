@@ -3,17 +3,17 @@ title: "Práctica 2: Limpieza y análisis de datos"
 author: <center> David Dávila y Mónica Gómez </center> 
 date: <center> 21/12/2020 </center> 
 output:
-  pdf_document:
-    toc: yes
-    number_sections: true
-    highlight: zenburn
-    code_folding: show
-    theme: spacelab
-    collapse: no
   html_document:
     toc: yes
     number_sections: true
     df_print: paged
+    highlight: zenburn
+    code_folding: show
+    theme: spacelab
+    collapse: no
+  pdf_document:
+    toc: yes
+    number_sections: true
     highlight: zenburn
     code_folding: show
     theme: spacelab
@@ -40,7 +40,7 @@ getwd()
 
 Se procede a abrir el archivo formato .csv y examinar el tipo de datos con los que R ha interpretado cada variable. 
 ```{r}
-mydata <- data.frame(read.csv("C:\\Users\\David\\Dropbox\\Data Science\\Máster Universitario en Ciencia de Datos\\Materias\\Semestre 2\\Tipología y ciclo de vida de los datos\\Prácticas\\PRA2\\Entrega\\data\\BankChurners.csv", header=TRUE))
+mydata <- data.frame(read.csv("C:\\Users\\GOMEZM\\Documents\\AnalisisPRA2\\BankChurners.csv", header=TRUE))
 df <- data.frame(mydata)
 attach(df)
 head(df)
@@ -356,5 +356,199 @@ La variable 'Total_Ct_Chng_Q4_Q1' tiene 394 outliers y muestra el cambio en el c
 
 ```{r}
 # Exportación de los datos limpios en formato .csv
-write.csv(df, "BankChurners_clean.csv")
+write.csv(df, "C:\\Users\\GOMEZM\\Documents\\AnalisisPRA2\\BankChurners_clean.csv")
 ```
+
+
+******
+# Analisis de los datos
+******
+
+## Selección de los grupos de datos a analizar 
+```{r message=FALSE}
+library(MASS)
+library(dplyr)
+library(plyr)
+```
+
+Para este estudio se tomarán algunas variables de tipo categorico para observar si se comportan de un a forma distinta ante la variable que deseeamos predecir. Antes de ello se eliminará la variable CLIENTUM de nuestro conjunto de datos.
+
+```{r message=FALSE}
+data=subset(df, select=-c(CLIENTNUM))
+colnames(data)
+```
+
+En este caso nos interesarán los grupos correspondientes al género, el nivel de educación y estado marital
+
+```{r message=FALSE}
+#Selección de grupos.
+#Agrupación por genero.
+data.femenino<-data[data$Gender=="F",]
+data.masculino<-data[data$Gender=="M",]
+#Agrupación por nivel de educación
+data.HighSchool<-data[data$Education_Level=="High School",]
+data.Graduate<-data[data$Education_Level=="Graduate",]
+data.Uneducated<-data[data$Education_Level=="Uneducated",]
+data.Unknown<-data[data$Education_Level=="Unknown",]
+data.College<-data[data$Education_Level=="College",]
+data.Postgraduate<-data[data$Education_Level=="Post-Graduate",]
+data.Doctorate<-data[data$Education_Level=="Doctorate",]
+#Agrupación por estado marital
+data.Married<-data[data$Marital_Status=="Married",]
+data.Single<-data[data$Marital_Status=="Single",]
+data.UnknownStatus<-data[data$Marital_Status=="Unknown",]
+data.Divorced<-data[data$Marital_Status=="Divorced",]
+```
+
+Por último dado que nuestra variable a predecir se encuentra con los valores "Existing Customer" y "Attrited Customer" se procede a cambiarla con notación binaria. Es decir, "Attrited Customer" tomará el valor 1 y "Existing Customer" tomará el valor 0.
+
+```{r message=FALSE}
+#Se convierten a dummy
+data$Attrition_Flag<-ifelse(data$Attrition_Flag=="Attrited Customer",1,0)
+```
+
+## Comprobación de normalidad y homogeneidad de la varianza
+
+Es de principal importancia dependiendo del modelo a aplicar, el realizar la correspondiente comprobación de normalidad y homogeneidad de la varianza en nuestro conjunto de datos. Por lo cual, para realizar la comprobación de nuestras variables sobre una población normalmente distribuida, se utilizará la prueba de normalidad de Anderson-Darling.
+
+Teniendo en cuenta en $\alpha =0.05$, si obtenemos un p-valor superior al alfa mencionado anteriormente, entonces no rechazaremos nuestra hipótesis nula y los valores vendrán de una distribución/población normal.
+
+```{r message=FALSE}
+library(nortest)
+col.names=colnames(data)
+alpha = 0.05
+
+for (i in 1:ncol(data)) {
+  if (i == 1) cat("Variables que no siguen una distribución normal:\n")
+  if (is.integer(data[[i]]) | is.numeric(data[[i]])) {
+    p_val = ad.test(data[[i]])$p.value
+    if (p_val < alpha) {
+      cat(col.names[i])
+      # Format output
+      if (i < ncol(data) - 1)
+      if (i %% 1 == 0) cat("\n")
+    }
+  }
+}
+```
+
+Posterioa a ello, realizamos la comprobación sobre la homogeneidad de las varianzas con el test de Fligner.Killen. Para neustro caso, estudiaremos la homogeneidad en cuanto a los grupos conformados por las siguientes variables: Género, nivel educativo, estado marital, categoría de ingresos y categoría de la tarjeta. Recordemos que la hipótesis nula consiste en que ambas varianzas son iguales
+
+```{r message=FALSE}
+fligner.test(Attrition_Flag~Gender, data=data)
+fligner.test(Attrition_Flag~Education_Level, data=data)
+fligner.test(Attrition_Flag~Marital_Status, data=data)
+fligner.test(Attrition_Flag~Income_Category, data=data)
+fligner.test(Attrition_Flag~Card_Category, data=data)
+```
+
+Teniendo en cuenta los resultados anteriores, solamente podemos no rechazar la hipótesis nula para las variables: nivel educativo, estado marital y categoría de la tarjeta. Dado que se obtienen que el valor-p asociado a la prueba es mayor que el alfa establecido.
+
+## Pruebas estadísticas
+```{r message=FALSE}
+corr_matrix <- matrix(nc = 2, nr = 0)
+colnames(corr_matrix) <- c("estimate", "p-value")
+# Calcular el coeficiente de correlación para cada variable cuantitativa
+# con respecto al campo "precio"
+for (i in 1:(ncol(data) - 1)) {
+  if (is.integer(data[[i]]) | is.numeric(data[[i]])) {
+    spearman_test = cor.test(data[[i]],
+                             data[[1]],
+                             method = "spearman")
+    corr_coef = spearman_test$estimate
+    p_val = spearman_test$p.value
+    # Add row to matrix
+    pair = matrix(ncol = 2, nrow = 1)
+    pair[1][1] = corr_coef
+    pair[2][1] = p_val
+    corr_matrix <- rbind(corr_matrix, pair)
+    rownames(corr_matrix)[nrow(corr_matrix)] <- colnames(data)[i]
+  }
+}
+
+corr_matrix
+```
+
+## Modelo de regresión logística
+
+Se plantea un primer modelo de regresión logística teniendo en cuenta que nuestra variable objetivo es binaria. Además se traen variables de interés en las cuales trataremos de predecir la estancia de los clientes dentro de la empresa. Entre dichas variables encontramos por ejemplo: edad del usuario, género, si tiene personas que dependen del usuario, nivel educativo, estado marital, categoría de ingresos, categoría de la tarjeta entre otros.
+
+```{r message=FALSE}
+logisticModelFull <- glm(Attrition_Flag ~  Customer_Age+Gender+Dependent_count+
+                           Education_Level+Marital_Status+Income_Category+
+                           Card_Category+Months_on_book+
+                           Total_Relationship_Count+Months_Inactive_12_mon
+                         +Contacts_Count_12_mon+Total_Revolving_Bal+
+                           Total_Trans_Amt+Total_Trans_Ct,
+                         family = "binomial",data)
+summary(logisticModelFull)
+```
+
+Dentro del resumen de los resultados del modelo obtenemos que las siguientes variables son estadísticamente signficativas: Gender, Dependent_count, Educational_Level, Marital_Status, Income_Category,Card_Category, Total_Relationship_Count, Months_Inactive_12_mon, Contacts_Count_12_mon, Total_Revolving_Bal, Total_Trans_Amt y Total_Trans_Ct.
+
+Sin embargo, utilizaremos la función stepAIC de R, la cual realiza la selección del modelo paso a paso por el criterio de información de Akaike (AIC), el cual es una medida de calidad relativa de un modelo estadístico.
+
+```{r message=FALSE}
+logisticModelNew <-  stepAIC(logisticModelFull, trace = 0)
+summary(logisticModelNew)
+```
+Finalmente mediante esta función se elige el modelo con las siguientes variables: Customer_Age, Gender, Dependent_count, Marital_Status, Income_Category, Card_Category, Total_Relationship_Count, Months_Inactive_12_mon, Contacts_Count_12_mon, Total_Revolving_Bal, Total_Trans_Amt, Total_Trans_Ct.
+
+## Interpreation de coeficientes (odds)
+
+```{r message=FALSE}
+odds <-  coef(logisticModelNew) %>% exp() %>% round(2)
+odds
+```
+Una breve interpretación de los resultados obtenidos con los coeficientes u "odds", puede ser la siguiente:
+
+* Los usuarios que se encuentran solteros aumentan la tasa de abandono en un 11%.
+* Dentro de los usuarios que tienen diferentes categoráis de tarjetas se tiene que aquellos que tienen la categoría platino aumentan la tasa de abandono en un 119%.
+* Una relación inversa que observamos la tasa de abandono es un un 59% menor si el usario es de género masculino comparado con las usuarias femeninas.
+
+## Predicciones
+
+Primero, se decide realizar una división de los datos en los conjuntos de datos de entrenamiento y de prueba. En este caso se genera una variable aleatoria que toma valores 1 y 0 gracias a que proviene de una distribución binomial con una probabilidad de 0.66.
+```{r message=FALSE}
+set.seed(27345)
+
+data$isTrain <- rbinom(nrow(data),1,0.66)
+train <-  data %>% filter(data$isTrain =="1")
+test <- data %>%  filter(data$isTrain == "0")
+```
+
+Posterior a ello, se realiza el modelo escogido anteriomente con el conjunto de datos de entrenamiento, y se realizan las predicciones con la función predict con el conjunto de datos de prueba.
+
+```{r message=FALSE}
+LogisticTrainNew <- glm(formula = Attrition_Flag ~ Customer_Age + Gender + Dependent_count + 
+                          Marital_Status + Income_Category + Card_Category + Total_Relationship_Count + 
+                          Months_Inactive_12_mon + Contacts_Count_12_mon + Total_Revolving_Bal + 
+                          Total_Trans_Amt + Total_Trans_Ct, family = "binomial", data = train)
+
+#prediciton 
+test$predictNew <- predict(LogisticTrainNew , type = "response" , newdata = test)
+```
+
+Para revisar que tan bien el modelo logístico predice los valores del conjunto de prueba se procede a realizar la matriz de confusión.
+
+```{r message=FALSE}
+library(readr)
+library(ggplot2)
+library(boot)
+library(caret)
+library(e1071)
+predicciones=as.factor(ifelse(test = test$predictNew > 0.35, yes = 1, no = 0))
+observaciones=as.factor(test$Attrition_Flag)
+matriz<-confusionMatrix(observaciones, predicciones)
+matriz
+```
+
+Como podemos observar, el modelo de reresión logística planteado nos da un nivel de exactitud de 88.87%, lo cual nos puede indicar la falta de variables exogenas que nos ayuden a modelar nuestro datos actuales.
+
+```{r message=FALSE}
+library(pROC)
+test_prob = predict(logisticModelNew, newdata = test, type = "response")
+test_roc = roc(test$Attrition_Flag ~ test_prob, plot = TRUE, print.auc = TRUE)
+```
+
+Por otra parte se realiza la grafíca ROC en la cual contiene también el valor de AUC (más conocida como el area bajo la curva ROC), hay que recordar que este valor varia entre 0 y 1, donde un modelo cuyas predicciones son un 100% incorrectas tiene un AUC de 0.0, otras donde sus predicciones son de un 100% entonces su valor de AUC asociado es de 1.0. En nuestro caso, obtuvimos un valor de AUC igual a 0.922 lo cual nos indica que las predicciones que se están haciendo se desvian un poco pero están cerca de pertenecer a un modelo "perfecto".
