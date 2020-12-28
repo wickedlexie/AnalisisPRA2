@@ -1,7 +1,7 @@
 ---
 title: "Práctica 2: Limpieza y análisis de datos"
 author: <center> David Dávila y Mónica Gómez </center> 
-date: <center> 21/12/2020 </center> 
+date: <center> 2020/01/05 </center> 
 output:
   html_document:
     toc: yes
@@ -149,8 +149,7 @@ Las modificaciones realizadas (preprocesamiento) se muestran a continuación.
 Se procede a abrir el archivo formato .csv y examinar el tipo de datos con los que R ha interpretado cada variable.  
 
 ```{r}
-df <- data.frame(read.csv("./data/BankChurners.csv", header=TRUE))
-#df <- data.frame(mydata)
+df <- data.frame(read.csv("BankChurners.csv", header=TRUE))
 attach(df)
 head(df)
 ```
@@ -171,8 +170,7 @@ str(df)
 
 ## Selección de los datos de interés
 
-Para el presente proyecto se utilizarán todas las variables presentes en el juego de datos a excepción de las dos últimas que no serán de utilidad en los análisis que se planean hacer a posteriori.
-
+Para el presente proyecto se utilizarán todas las variables presentes en el juego de datos a excepción de las dos últimas puesto que no se aplicará el análisis Naive Bayes.
 
 ```{r}
 df <- df[,-(22:23)]
@@ -183,32 +181,36 @@ names(df)
 
 Se elaboran gráficas por variable para tener un primer acercamiento y conocer más sobre su comportamiento:  
 
+```{r}
+sapply(df,class)
+```
+
 ```{r message=FALSE, warning=FALSE}
 library(ggplot2)
 
 par(mfrow=c(2,2))
 
-p1 <- plot(CLIENTNUM, main="CLIENTNUM")
+#p1 <- plot(CLIENTNUM, main="CLIENTNUM")
 p2 <- plot(as.factor(Attrition_Flag), main="Attrition_Flag")
-p3 <- plot(Customer_Age, main="Customer_Age")
+p3 <- hist(Customer_Age, main="Customer_Age")
 p4 <- plot(as.factor(Gender), main="Gender")
-p5 <- plot(Dependent_count, main="Dependent_count")
+p5 <- hist(Dependent_count, main="Dependent_count")
 p6 <- plot(as.factor(Education_Level), main="Education_Level")
 p7 <- plot(as.factor(Marital_Status), main="Marital_Status") 
 p8 <- plot(as.factor(Income_Category), main="Income_Category")    
 p9 <- plot(as.factor(Card_Category), main="Card_Category")  
-p10 <- plot(Months_on_book, main="Months_on_book")
+p10 <- hist(Months_on_book, main="Months_on_book")
 p11 <- plot(as.factor(Total_Relationship_Count), main="Total_Relationship_Count")
-p12 <- plot(Months_Inactive_12_mon, main="Months_Inactive_12_mon")  
-p13 <- plot(Contacts_Count_12_mon, main="Contacts_Count_12_mon")  
-p14 <- plot(Credit_Limit, main="Credit_Limit")  
-p15 <- plot(Total_Revolving_Bal, main="Total_Revolving_Bal")  
-p16 <- plot(Avg_Open_To_Buy, main="Avg_Open_To_Buy")  
-p17 <- plot(Total_Amt_Chng_Q4_Q1, main="Total_Amt_Chng_Q4_Q1")  
-p18 <- plot(Total_Trans_Amt, main="Total_Trans_Amt")  
-p19 <- plot(Total_Trans_Ct, main="Total_Trans_Ct")  
-p20 <- plot(Total_Ct_Chng_Q4_Q1, main="Total_Ct_Chng_Q4_Q1")  
-p21 <- plot(Avg_Utilization_Ratio, main="Avg_Utilization_Ratio")  
+p12 <- hist(Months_Inactive_12_mon, main="Months_Inactive_12_mon")  
+p13 <- hist(Contacts_Count_12_mon, main="Contacts_Count_12_mon")  
+p14 <- hist(Credit_Limit, main="Credit_Limit")  
+p15 <- hist(Total_Revolving_Bal, main="Total_Revolving_Bal")  
+p16 <- hist(Avg_Open_To_Buy, main="Avg_Open_To_Buy")  
+p17 <- hist(Total_Amt_Chng_Q4_Q1, main="Total_Amt_Chng_Q4_Q1")  
+p18 <- hist(Total_Trans_Amt, main="Total_Trans_Amt")  
+p19 <- hist(Total_Trans_Ct, main="Total_Trans_Ct")  
+p20 <- hist(Total_Ct_Chng_Q4_Q1, main="Total_Ct_Chng_Q4_Q1")  
+p21 <- hist(Avg_Utilization_Ratio, main="Avg_Utilization_Ratio")  
 ```
 
 Los gráficos generados nos permiten explorar los datos de forma preliminar. Algunos de los insights que se pueden extraer son:
@@ -258,7 +260,7 @@ Se procede a hacer la exploración de outliers con el diagráma de caja y bigote
 
 par(mfrow=c(2,2))
 
-p1 <- boxplot(CLIENTNUM, main="CLIENTNUM")
+#p1 <- boxplot(CLIENTNUM, main="CLIENTNUM")
 p3 <- boxplot(Customer_Age, main="Customer_Age")
 p5 <- boxplot(Dependent_count, main="Dependent_count")
 p10 <- boxplot(Months_on_book, main="Months_on_book")
@@ -483,3 +485,70 @@ La variable 'Total_Ct_Chng_Q4_Q1' tiene 394 outliers y muestra el cambio en el c
 # Exportación de los datos limpios en formato .csv
 write.csv(df, "BankChurners_clean.csv")
 ```
+
+
+# Análisis de los datos. 
+
+## Selección de los grupos de datos que se quieren analizar/comparar (planificación de los análisis a aplicar). 
+
+## Comprobación de la normalidad y homogeneidad de la varianza. 
+
+## Aplicación de pruebas estadísticas para comparar los grupos de datos. En función  de los datos y el objetivo del estudio, aplicar pruebas de contraste de hipótesis,  correlaciones, regresiones, etc. Aplicar al menos tres métodos de análisis  diferentes. 
+
+
+# Representación de los resultados a partir de tablas y gráficas. 
+
+
+## Interpretacion de coeficientes (odds)
+
+# Resolución del problema. A partir de los resultados obtenidos, ¿cuáles son las  conclusiones? ¿Los resultados permiten responder al problema?
+
+# Código: Hay que adjuntar el código, preferiblemente en R, con el que se ha realizado la  limpieza, análisis y representación de los datos. Si lo preferís, también podéis trabajar en  Python.  
+
+
+Project Link:https://github.com/wickedlexie/AnalisisPRA2
+
+# Recursos   
+
+Los siguientes recursos son de utilidad para la realización de la práctica:   
+
+● Calvo M., Subirats L., Pérez D. (2019). Introducción a la limpieza y análisis de los datos.  Editorial UOC.   
+● Megan Squire (2015). Clean Data. Packt Publishing Ltd.   
+● Jiawei Han, Micheine Kamber, Jian Pei (2012). Data mining: concepts and techniques.  Morgan Kaufmann.   
+● Jason W. Osborne (2010). Data Cleaning Basics: Best Practices in Dealing with Extreme  Scores. Newborn and Infant Nursing Reviews; 10 (1): pp. 1527-3369.   
+● Peter Dalgaard (2008). Introductory statistics with R. Springer Science & Business Media.  
+● Wes McKinney (2012). Python for Data Analysis. O’Reilley Media, Inc.   
+● Tutorial de Github: https://guides.github.com/activities/hello-world. 
+
+# Criterios de valoración   
+
+Todos los apartados son obligatorios. La ponderación de los ejercicios es la siguiente: 
+
+Los apartados 1, 2 y 6 valen 0,5 puntos.   
+Los apartados 3, 5 y 7 valen 2 puntos.   
+El apartado 4 vale 2,5 puntos.   
+
+Se valorará la idoneidad de las respuestas, que deberán ser claras y completas. Las diferentes  etapas deberán justificarse y acompañarse del código correspondiente. También se valorará la  síntesis y claridad, a través del uso de comentarios, del código resultante, así como la calidad de  los datos finales analizados. 
+
+# Formato y fecha de entrega  
+
+Durante la semana del 21 al 25 de diciembre el grupo podrá entregar al profesor una entrega  parcial opcional. Esta entrega parcial es muy recomendable para recibir asesoramiento sobre la  práctica y verificar que la dirección tomada es la correcta. Se entregarán comentarios a los  estudiantes que hayan efectuado la entrega parcial pero no contará para la nota de la práctica.  
+
+En la entrega parcial los estudiantes deberán entregar por correo electrónico, al profesor  encargado del aula, el enlace al repositorio Github con el que hayan avanzado.   
+
+En referente a la entrega final, hay que entregar un único fichero que contenga el enlace Github,  el cual no se podrá modificar posteriormente a la fecha de entrega, donde haya:  
+
+1. Una Wiki con los nombres de los componentes del grupo y una descripción de los  ficheros.
+2. Un documento PDF con las respuestas a las preguntas y los nombres de los componentes  del grupo. Además, al final del documento, deberá aparecer la siguiente tabla de  contribuciones al trabajo, la cual debe firmar cada integrante del grupo con sus iniciales. Las iniciales representan la confirmación de que el integrante ha participado en dicho  apartado. Todos los integrantes deben participar en cada apartado, por lo que,  idealmente, los apartados deberían estar firmados por todos los integrantes. 
+
+| **Contribuciones** | **Firma** |
+|-:|:-:|
+| Investigación previa  | DFDO (dfdavila)<br>Mónica Alexandra Gómez Martínez |
+| Redacción de las respuestas  | DFDO (dfdavila)<br>Mónica Alexandra Gómez Martínez |
+| Desarrollo código  | DFDO (dfdavila)<br>Mónica Alexandra Gómez Martínez |
+
+3. Una carpeta con el código generado para analizar los datos. 
+4. El fichero CSV con los datos originales. 
+5. El fichero CSV con los datos finales analizados.  
+
+Este documento de entrega final de la Práctica 2 se debe entregar en el espacio de Entrega y  Registro de AC del aula antes de las 23:59 del día 5 de enero. No se aceptarán entregas fuera  de plazo.
