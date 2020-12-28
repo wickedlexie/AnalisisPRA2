@@ -382,7 +382,7 @@ max(cl)
 length(cl)
 ```
   
-Dado que el límite de crédito puede variar dependiendo de muchos factores para a un cliente en específico se opta por mantenerlos.
+La variable 'Credit_Limit' presenta 984 outliers pero dado que el límite de crédito puede variar dependiendo de muchos factores para a un cliente en específico se opta por mantenerlos.
 
 ******
 ### Avg_Open_To_Buy
@@ -412,7 +412,7 @@ max(tac)
 length(tac)
 ```
   
-La variable 'Total_Amt_Chng_Q4_Q1' tiene 396 outliers y muestra los cambios transaccionales que pueden ser muy variables dependiendo del perfil de cada cliente, así que se opta por mantenerlos.
+La variable 'Total_Amt_Chng_Q4_Q1' tiene 1954 outliers y muestra los cambios transaccionales que pueden ser muy variables dependiendo del perfil de cada cliente, así que se opta por mantenerlos.
 
 ******
 ### Total_Trans_Amt
@@ -442,7 +442,7 @@ max(ttc)
 length(ttc)
 ```
   
-La variable 'Total_Trans_Ct' tiene 2 outliers. Es extraño que se existan únicamente dos clientes que durante los últimos 12 meses hayan realizado casi 140 transacciones. Por ello se opta por imputar esos datos.
+La variable 'Total_Trans_Ct' tiene 2 outliers. Es extraño que existan únicamente dos clientes que durante los últimos 12 meses hayan realizado casi 140 transacciones. Por ello se opta por imputar esos datos.
 
 
 ```{r}
@@ -461,21 +461,6 @@ df[index,]$Total_Trans_Ct <- median(df$Total_Trans_Ct, na.rm=TRUE ) #imputación
 }
 df$Total_Trans_Ct[idx] #mostramos el resultado
 ```
-
-******
-### Total_Ct_Chng_Q4_Q1
-******
-
-```{r}
-x<-boxplot.stats(Total_Ct_Chng_Q4_Q1)$out
-idx <- which(Total_Ct_Chng_Q4_Q1 %in% x)
-tcc <- df$Total_Ct_Chng_Q4_Q1[idx] #Valores atípicos
-min(tcc)
-max(tcc)
-length(tcc)
-```
-  
-La variable 'Total_Ct_Chng_Q4_Q1' tiene 394 outliers y muestra el cambio en el conteo de las transacciones que pueden ser muy variables de cliente a cliente, así que se opta por mantenerlos.
 
 ******
 # Exportación de los datos preprocesados

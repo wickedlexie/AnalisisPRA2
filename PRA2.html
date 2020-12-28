@@ -1856,7 +1856,6 @@ David Dávila y Mónica Gómez
 <li><a href="#total_amt_chng_q4_q1"><span class="toc-section-number">7.3.7</span> Total_Amt_Chng_Q4_Q1</a></li>
 <li><a href="#total_trans_amt"><span class="toc-section-number">7.3.8</span> Total_Trans_Amt</a></li>
 <li><a href="#total_trans_ct"><span class="toc-section-number">7.3.9</span> Total_Trans_Ct</a></li>
-<li><a href="#total_ct_chng_q4_q1"><span class="toc-section-number">7.3.10</span> Total_Ct_Chng_Q4_Q1</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#exportación-de-los-datos-preprocesados"><span class="toc-section-number">8</span> Exportación de los datos preprocesados</a></li>
@@ -2404,7 +2403,7 @@ David Dávila y Mónica Gómez
 <pre><code>## [1] 34516</code></pre>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="kw">length</span>(cl)</span></code></pre></div>
 <pre><code>## [1] 984</code></pre>
-<p>Dado que el límite de crédito puede variar dependiendo de muchos factores para a un cliente en específico se opta por mantenerlos.</p>
+<p>La variable ‘Credit_Limit’ presenta 984 outliers pero dado que el límite de crédito puede variar dependiendo de muchos factores para a un cliente en específico se opta por mantenerlos.</p>
 <hr />
 </div>
 <div id="avg_open_to_buy" class="section level3">
@@ -2434,7 +2433,7 @@ David Dávila y Mónica Gómez
 <pre><code>## [1] 18</code></pre>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="kw">length</span>(tac)</span></code></pre></div>
 <pre><code>## [1] 1954</code></pre>
-<p>La variable ‘Total_Amt_Chng_Q4_Q1’ tiene 396 outliers y muestra los cambios transaccionales que pueden ser muy variables dependiendo del perfil de cada cliente, así que se opta por mantenerlos.</p>
+<p>La variable ‘Total_Amt_Chng_Q4_Q1’ tiene 1954 outliers y muestra los cambios transaccionales que pueden ser muy variables dependiendo del perfil de cada cliente, así que se opta por mantenerlos.</p>
 <hr />
 </div>
 <div id="total_trans_amt" class="section level3">
@@ -2464,7 +2463,7 @@ David Dávila y Mónica Gómez
 <pre><code>## [1] 139</code></pre>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1"></a><span class="kw">length</span>(ttc)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<p>La variable ‘Total_Trans_Ct’ tiene 2 outliers. Es extraño que se existan únicamente dos clientes que durante los últimos 12 meses hayan realizado casi 140 transacciones. Por ello se opta por imputar esos datos.</p>
+<p>La variable ‘Total_Trans_Ct’ tiene 2 outliers. Es extraño que existan únicamente dos clientes que durante los últimos 12 meses hayan realizado casi 140 transacciones. Por ello se opta por imputar esos datos.</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1"></a>df<span class="op">$</span>Total_Trans_Ct[df<span class="op">$</span>Total_Trans_Ct<span class="op">&gt;</span><span class="dv">137</span>] &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co">#Dejamos en NA solo los más extremos</span></span>
 <span id="cb88-2"><a href="#cb88-2"></a>df<span class="op">$</span>Total_Trans_Ct[idx]</span></code></pre></div>
 <pre><code>## [1] NA NA</code></pre>
@@ -2481,30 +2480,13 @@ David Dávila y Mónica Gómez
 <pre><code>## [1] 67 67</code></pre>
 <hr />
 </div>
-<div id="total_ct_chng_q4_q1" class="section level3">
-<h3><span class="header-section-number">7.3.10</span> Total_Ct_Chng_Q4_Q1</h3>
-<hr />
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1"></a>x&lt;-<span class="kw">boxplot.stats</span>(Total_Ct_Chng_Q4_Q1)<span class="op">$</span>out</span>
-<span id="cb95-2"><a href="#cb95-2"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(Total_Ct_Chng_Q4_Q1 <span class="op">%in%</span><span class="st"> </span>x)</span>
-<span id="cb95-3"><a href="#cb95-3"></a>tcc &lt;-<span class="st"> </span>df<span class="op">$</span>Total_Ct_Chng_Q4_Q1[idx] <span class="co">#Valores atípicos</span></span>
-<span id="cb95-4"><a href="#cb95-4"></a><span class="kw">min</span>(tcc)</span></code></pre></div>
-<pre><code>## Warning in min(tcc): ningún argumento finito para min; retornando Inf</code></pre>
-<pre><code>## [1] Inf</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1"></a><span class="kw">max</span>(tcc)</span></code></pre></div>
-<pre><code>## Warning in max(tcc): ningun argumento finito para max; retornando -Inf</code></pre>
-<pre><code>## [1] -Inf</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1"></a><span class="kw">length</span>(tcc)</span></code></pre></div>
-<pre><code>## [1] 0</code></pre>
-<p>La variable ‘Total_Ct_Chng_Q4_Q1’ tiene 394 outliers y muestra el cambio en el conteo de las transacciones que pueden ser muy variables de cliente a cliente, así que se opta por mantenerlos.</p>
-<hr />
-</div>
 </div>
 </div>
 <div id="exportación-de-los-datos-preprocesados" class="section level1">
 <h1><span class="header-section-number">8</span> Exportación de los datos preprocesados</h1>
 <hr />
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1"></a><span class="co"># Exportación de los datos limpios en formato .csv</span></span>
-<span id="cb103-2"><a href="#cb103-2"></a><span class="kw">write.csv</span>(df, <span class="st">&quot;BankChurners_clean.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1"></a><span class="co"># Exportación de los datos limpios en formato .csv</span></span>
+<span id="cb95-2"><a href="#cb95-2"></a><span class="kw">write.csv</span>(df, <span class="st">&quot;BankChurners_clean.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="análisis-de-los-datos." class="section level1">
 <h1><span class="header-section-number">9</span> Análisis de los datos.</h1>
