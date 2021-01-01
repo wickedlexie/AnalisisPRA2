@@ -1,23 +1,25 @@
 ---
-title: "Práctica 2: Limpieza y análisis de datos"
-author: <center> David Dávila y Mónica Gómez </center> 
-date: <center> 2020/01/05 </center> 
+title: 'Práctica 2: Limpieza y análisis de datos'
+author: "<center> David Dávila y Mónica Gómez </center>"
+date: "<center> 2020/01/05 </center>"
 output:
+  pdf_document:
+    toc: yes
+    number_sections: yes
+    highlight: zenburn
+    code_folding: show
+    theme: spacelab
+    collapse: no
   html_document:
     toc: yes
-    number_sections: true
+    number_sections: yes
     df_print: paged
     highlight: zenburn
     code_folding: show
     theme: spacelab
     collapse: no
-  pdf_document:
+  word_document:
     toc: yes
-    number_sections: true
-    highlight: zenburn
-    code_folding: show
-    theme: spacelab
-    collapse: no
 ---
 
 ```{r setup, include=FALSE}
@@ -462,9 +464,7 @@ df[index,]$Total_Trans_Ct <- median(df$Total_Trans_Ct, na.rm=TRUE ) #imputación
 df$Total_Trans_Ct[idx] #mostramos el resultado
 ```
 
-******
 # Exportación de los datos preprocesados
-******
 
 ```{r}
 # Exportación de los datos limpios en formato .csv
@@ -476,20 +476,285 @@ write.csv(df, "BankChurners_clean.csv")
 
 ## Selección de los grupos de datos que se quieren analizar/comparar (planificación de los análisis a aplicar). 
 
+```{r message=FALSE}
+library(MASS)
+library(dplyr)
+library(plyr)
+```
+
+Para este estudio se tomarán algunas variables de tipo categórico para observar si se comportan de una forma distinta ante la variable que deseeamos predecir. Antes de ello se eliminará la variable CLIENTUM de nuestro conjunto de datos.
+
+```{r message=FALSE}
+data=subset(df, select=-c(CLIENTNUM))
+colnames(data)
+```
+
+En este caso nos interesarán los grupos correspondientes al género, el nivel de educación y estado marital.
+
+```{r message=FALSE}
+#Selección de grupos.
+#Agrupación por genero.
+data.femenino<-data[data$Gender=="F",]
+data.masculino<-data[data$Gender=="M",]
+#Agrupación por nivel de educación
+data.HighSchool<-data[data$Education_Level=="High School",]
+data.Graduate<-data[data$Education_Level=="Graduate",]
+data.Uneducated<-data[data$Education_Level=="Uneducated",]
+data.Unknown<-data[data$Education_Level=="Unknown",]
+data.College<-data[data$Education_Level=="College",]
+data.Postgraduate<-data[data$Education_Level=="Post-Graduate",]
+data.Doctorate<-data[data$Education_Level=="Doctorate",]
+#Agrupación por estado marital
+data.Married<-data[data$Marital_Status=="Married",]
+data.Single<-data[data$Marital_Status=="Single",]
+data.UnknownStatus<-data[data$Marital_Status=="Unknown",]
+data.Divorced<-data[data$Marital_Status=="Divorced",]
+```
+
+Por último dado que nuestra variable a predecir se encuentra con los valores "Existing Customer" y "Attrited Customer" se procede a cambiarla con notación binaria. Es decir, "Attrited Customer" tomará el valor 1 y "Existing Customer" tomará el valor 0.
+
+```{r message=FALSE}
+#Se convierten a dummy
+data$Attrition_Flag<-ifelse(data$Attrition_Flag=="Attrited Customer",1,0)
+```
+
 ## Comprobación de la normalidad y homogeneidad de la varianza. 
+Es de principal importancia dependiendo del modelo a aplicar, el realizar la correspondiente comprobación de normalidad y homogeneidad de la varianza en nuestro conjunto de datos. Por lo cual, para realizar la comprobación de nuestras variables sobre una población normalmente distribuida, se utilizará la prueba de normalidad de Anderson-Darling.
+
+Teniendo en cuenta un $\alpha =0.05$, si obtenemos un p-valor superior al alpha mencionado anteriormente, entonces no rechazaremos nuestra hipótesis nula y los valores vendrán de una distribución/población normal.
+
+```{r message=FALSE}
+library(nortest)
+col.names=colnames(data)
+alpha = 0.05
+
+for (i in 1:ncol(data)) {
+  if (i == 1) cat("Variables que no siguen una distribución normal:\n")
+  if (is.integer(data[[i]]) | is.numeric(data[[i]])) {
+    p_val = ad.test(data[[i]])$p.value
+    if (p_val < alpha) {
+      cat(col.names[i])
+      # Format output
+      if (i < ncol(data) - 1)
+      if (i %% 1 == 0) cat("\n")
+    }
+  }
+}
+```
+
+Posterior a ello, realizamos la comprobación sobre la homogeneidad de las varianzas con el test de Fligner.Killen. Para nuestro caso, estudiaremos la homogeneidad en cuanto a los grupos conformados por las siguientes variables: Género, nivel educativo, estado marital, categoría de ingresos y categoría de la tarjeta. Recordemos que la hipótesis nula consiste en que las varianzas de los grupos son iguales.
+
+```{r message=FALSE}
+fligner.test(Attrition_Flag~Gender, data=data)
+fligner.test(Attrition_Flag~Education_Level, data=data)
+fligner.test(Attrition_Flag~Marital_Status, data=data)
+fligner.test(Attrition_Flag~Income_Category, data=data)
+fligner.test(Attrition_Flag~Card_Category, data=data)
+```
+
+Teniendo en cuenta los resultados anteriores, solamente podemos no rechazar la hipótesis nula para las variables: nivel educativo, estado marital y categoría de la tarjeta. Dado que se obtienen que el valor-p asociado a la prueba es mayor que el alpha establecido.
 
 ## Aplicación de pruebas estadísticas para comparar los grupos de datos. En función  de los datos y el objetivo del estudio, aplicar pruebas de contraste de hipótesis,  correlaciones, regresiones, etc. Aplicar al menos tres métodos de análisis  diferentes. 
 
+### Correlaciones
+```{r message=FALSE}
+corr_matrix <- matrix(nc = 2, nr = 0)
+colnames(corr_matrix) <- c("estimate", "p-value")
+# Calcular el coeficiente de correlación para cada variable cuantitativa
+# con respecto al campo "precio"
+for (i in 1:(ncol(data) - 1)) {
+  if (is.integer(data[[i]]) | is.numeric(data[[i]])) {
+    spearman_test = cor.test(data[[i]],
+                             data[[1]],
+                             method = "spearman")
+    corr_coef = spearman_test$estimate
+    p_val = spearman_test$p.value
+    # Add row to matrix
+    pair = matrix(ncol = 2, nrow = 1)
+    pair[1][1] = corr_coef
+    pair[2][1] = p_val
+    corr_matrix <- rbind(corr_matrix, pair)
+    rownames(corr_matrix)[nrow(corr_matrix)] <- colnames(data)[i]
+  }
+}
+
+corr_matrix
+```
+Los valores que estamos observando anteriormente de correlación, no conllevan una fuerte correlación teniendo en cuenta nuestra variable objetivo, ya que por lo general están variando entre $-0.37$ y $0.18$, por lo cual se pueden clasificar dichos valores como una correlación débil.
+
+
+### Contraste de hipótesis
+Para ello se utilizará la prueba de Fisher, la cual es un test exacto cuando se quiere observar si existe asociación entre dos variables de tipo cualitativo, es decir, si las proporciones de una variable son diferentes dependiendo del valor que adquiera la otra variable.
+
+**H0:** Las variables son independientes por lo que una variable no varia entre los distintos niveles de la otra variable.
+
+**H1:** Las variables son dependientes, una variable varia entre los distintos niveles de la otra variable.
+
+```{r message=FALSE}
+tabla <- table(data$Gender, data$Attrition_Flag)
+tabla
+```
+**Test de Fisher.**
+
+```{r message=FALSE}
+fisher.test(x = tabla, alternative = "two.sided")
+
+```
+
+Teniendo en cuenta el valor p observado, es igual a $0.0001825$ es menor que el nivel de significancia 0.05, rechazamos la hipótesis nula. Es decir, las variables de Attrition_Flag y Gender son dependientes. Este pequeño análisis nos ayudará a futuro para ingresar las variables en el modelo de regresión logística.
+
+### Modelo de regresión logística
+Se plantea un primer modelo de regresión logística teniendo en cuenta que nuestra variable objetivo es binaria. Además se traen variables de interés en las cuales trataremos de predecir la estancia de los clientes dentro de la empresa. Entre dichas variables encontramos por ejemplo: edad del usuario, género, si tiene personas que dependen del usuario, nivel educativo, estado marital, categoría de ingresos, categoría de la tarjeta entre otros.
+
+```{r message=FALSE}
+logisticModelFull <- glm(Attrition_Flag ~  Customer_Age+Gender+Dependent_count+
+                           Education_Level+Marital_Status+Income_Category+
+                           Card_Category+Months_on_book+
+                           Total_Relationship_Count+Months_Inactive_12_mon
+                         +Contacts_Count_12_mon+Total_Revolving_Bal+
+                           Total_Trans_Amt+Total_Trans_Ct,
+                         family = "binomial",data)
+summary(logisticModelFull)
+```
+
+Dentro del resumen de los resultados del modelo obtenemos que las siguientes variables son estadísticamente signficativas: Gender, Dependent_count, Educational_Level, Marital_Status, Income_Category,Card_Category, Total_Relationship_Count, Months_Inactive_12_mon, Contacts_Count_12_mon, Total_Revolving_Bal, Total_Trans_Amt y Total_Trans_Ct.
+
+Sin embargo, utilizaremos la función stepAIC de R, la cual realiza la selección del modelo paso a paso por el criterio de información de Akaike (AIC), el cual es una medida de calidad relativa de un modelo estadístico.
+
+```{r message=FALSE}
+logisticModelNew <-  stepAIC(logisticModelFull, trace = 0)
+summary(logisticModelNew)
+```
+Finalmente mediante esta función se elige el modelo con las siguientes variables: Customer_Age, Gender, Dependent_count, Marital_Status, Income_Category, Card_Category, Total_Relationship_Count, Months_Inactive_12_mon, Contacts_Count_12_mon, Total_Revolving_Bal, Total_Trans_Amt, Total_Trans_Ct.
+
+### Validación cruzada
+
+Por otra parte realizaremos un acercamiento con validación cruzada con el modelo anteriormente visto, y observar si se realizan algunos cambios dentro del modelo, en particular se utilizará el método Validación cruzada de K-fold. Recordando que este método evalua el rendimiento del modelo en diferentes subconjuntos de los datos de entrenamiento y luego calcula la tasa de error de predicción promedio. En la práctica, normalmente se realiza una validación cruzada de k veces utilizando $k=5$ o $k=10$, por lo cual utilizaremos $k=10$.
+
+
+Primero, se decide realizar una división de los datos en los conjuntos de datos de entrenamiento y de prueba. En este caso se genera una variable aleatoria que toma valores 1 y 0 gracias a que proviene de una distribución binomial con una probabilidad de 0.66.
+```{r message=FALSE}
+library(caret)
+set.seed(27345)
+
+data$isTrain <- rbinom(nrow(data),1,0.66)
+train <-  data %>% filter(data$isTrain =="1")
+test <- data %>%  filter(data$isTrain == "0")
+train_control <- trainControl(method = "cv", number = 10)
+model <- train(Attrition_Flag ~ Customer_Age + Gender + Dependent_count + 
+                 Marital_Status + Income_Category + Card_Category + Total_Relationship_Count + 
+                 Months_Inactive_12_mon + Contacts_Count_12_mon + Total_Revolving_Bal + 
+                 Total_Trans_Amt + Total_Trans_Ct,
+               data = train,
+               trControl = train_control,
+               method = "glm",
+               family=binomial())
+summary(model)
+```
+Sin embargo, observamos que en este acercamiento se encuentra que Card_Category no es significativo estadisticamente en ninguno de sus niveles por lo cual volvemos a plantear el modelo sin dicha categoría.
+```{r message=FALSE}
+library(caret)
+set.seed(27345)
+
+data$isTrain <- rbinom(nrow(data),1,0.66)
+train <-  data %>% filter(data$isTrain =="1")
+test <- data %>%  filter(data$isTrain == "0")
+train_control <- trainControl(method = "cv", number = 10)
+model <- train(Attrition_Flag ~ Customer_Age + Gender + Dependent_count + 
+                 Marital_Status + Income_Category + Total_Relationship_Count + 
+                 Months_Inactive_12_mon + Contacts_Count_12_mon + Total_Revolving_Bal + 
+                 Total_Trans_Amt + Total_Trans_Ct,
+               data = train,
+               trControl = train_control,
+               method = "glm",
+               family=binomial())
+summary(model)
+```
+Algo que podemos observar teniendo en cuenta la validación cruzada junto con el modelo anteriormente propuesto es el valor del Criterio de Akaike que toma. Por ejemplo para el modelo *LogisticModelNew* tenemos un valor de $AIC=5155$ mientras que para el modelo con validación cruzada se tiene un valor de $AIC=3456.5$. Esto podría llegar a ser un indicador, para tener en cuenta una métodología (K-Fold) sobre otra.
 
 # Representación de los resultados a partir de tablas y gráficas. 
 
+## Modelo de regresión lineal
 
-## Interpretacion de coeficientes (odds)
+### Interpretacion de coeficientes (odds)
+
+```{r message=FALSE}
+odds <-  coef(logisticModelNew) %>% exp() %>% round(2)
+odds
+```
+Una breve interpretación de los resultados obtenidos con los coeficientes u "odds", puede ser la siguiente:
+
+* Los usuarios que se encuentran solteros aumentan la tasa de abandono en un 11%.
+* Dentro de los usuarios que tienen diferentes categoráis de tarjetas se tiene que aquellos que tienen la categoría platino aumentan la tasa de abandono en un 119%.
+* Una relación inversa que observamos la tasa de abandono es un un 59% menor si el usario es de género masculino comparado con las usuarias femeninas.
+
+### Predicciones
+
+Se realiza el modelo escogido anteriomente con el conjunto de datos de entrenamiento, y se realizan las predicciones con la función predict con el conjunto de datos de prueba.
+
+```{r message=FALSE}
+LogisticTrainNew <- glm(formula = Attrition_Flag ~ Customer_Age + Gender + Dependent_count + 
+                          Marital_Status + Income_Category + Card_Category + Total_Relationship_Count + 
+                          Months_Inactive_12_mon + Contacts_Count_12_mon + Total_Revolving_Bal + 
+                          Total_Trans_Amt + Total_Trans_Ct, family = "binomial", data = train)
+
+#prediciton 
+test$predictNew <- predict(LogisticTrainNew , type = "response" , newdata = test)
+```
+
+Para revisar que tan bien el modelo logístico predice los valores del conjunto de prueba se procede a realizar la matriz de confusión.
+
+```{r message=FALSE}
+library(readr)
+library(ggplot2)
+library(boot)
+library(e1071)
+predicciones=as.factor(ifelse(test = test$predictNew > 0.35, yes = 1, no = 0))
+observaciones=as.factor(test$Attrition_Flag)
+matriz<-confusionMatrix(observaciones, predicciones)
+matriz
+```
+
+Como podemos observar, el modelo de reresión logística planteado nos da un nivel de exactitud de 88.87%, lo cual nos puede indicar la falta de variables exogenas que nos ayuden a modelar nuestro datos actuales.
+
+```{r message=FALSE}
+library(pROC)
+test_prob = predict(logisticModelNew, newdata = test, type = "response")
+test_roc = roc(test$Attrition_Flag ~ test_prob, plot = TRUE, print.auc = TRUE)
+```
+
+Por otra parte se realiza la grafíca ROC en la cual contiene también el valor de AUC (más conocida como el area bajo la curva ROC), hay que recordar que este valor varia entre 0 y 1, donde un modelo cuyas predicciones son un 100% incorrectas tiene un AUC de 0.0, otras donde sus predicciones son de un 100% entonces su valor de AUC asociado es de 1.0. En nuestro caso, obtuvimos un valor de AUC igual a 0.922 lo cual nos indica que las predicciones que se están haciendo se desvian un poco pero están cerca de pertenecer a un modelo "perfecto".
+
+## Modelo de regresión lineal con validación cruzada
+
+Para el modelo de regresión logística con validación cruzada se realizan las correspondientes predicciones para el conjunto de datos de test y generamos la curva ROC.
+
+```{r message=FALSE}
+library(ggplot2)
+library(ROCR)
+
+predict0 <- predict(model, type = 'raw',test)
+ROCRpred0 <- prediction(as.numeric(predict0),as.numeric(test$Attrition_Flag))
+ROCRperf0<- performance(ROCRpred0, 'tpr', 'fpr')
+plot(ROCRperf0, colorize=TRUE, text.adj=c(-0.2,1.7))
+```
+
+Por otra parte, comparando las predicciones generadas por el método de validación cruzada no varian comparado con el modelo anteriormente presenteado, al igual que los valores de precisión, sensibilidad y especificidad.
+
+```{r message=FALSE}
+predicciones2=as.factor(ifelse(test = predict0 > 0.35, yes = 1, no = 0))
+observaciones2=as.factor(test$Attrition_Flag)
+matriz2<-confusionMatrix(observaciones2, predicciones2)
+matriz2
+```
 
 # Resolución del problema. A partir de los resultados obtenidos, ¿cuáles son las  conclusiones? ¿Los resultados permiten responder al problema?
 
-# Código: Hay que adjuntar el código, preferiblemente en R, con el que se ha realizado la  limpieza, análisis y representación de los datos. Si lo preferís, también podéis trabajar en  Python.  
+Teniendo en cuenta los resultados por ejemplo de la exactitud y la precisión presentada dentro del código se recomendaría el poder utilizar nuevas variables que nos ayuden a encontrar relaciones escondidas dentro de los datos y generen un mejor modelo con una exactitud y precisión más alta. Sin embargo los resultados actuales que se tienen del modelo de regresíón logístico son bastante buenos teniendo en cuenta los datos y la cantidad de datos que se obtuvieron para la realización de la práctica. Otra opción que tendíamos a futuro, sería plantear otros tipos de modelos que se comparen con el modelo actual, tal como lo puede ser un árbol de decisión, clústeres e inclusive redes neuronales para manejar las relaciones complejas que no se pueden detectar utilizando otros modelos anteriormente mencionados.  
 
+Por otra parte, respondiendo a nuestra pregunta planteada y a partir de los resultados obtenidos mediante el modelo de regresión logistica podemos modelar y predecir a cierto nivel la deserción de los clientes dentro de la empresa.
+
+# Código: Hay que adjuntar el código, preferiblemente en R, con el que se ha realizado la  limpieza, análisis y representación de los datos. Si lo preferís, también podéis trabajar en  Python.  
 
 Project Link:https://github.com/wickedlexie/AnalisisPRA2
 
