@@ -1835,8 +1835,8 @@ David Dávila y Mónica Gómez
 <li><a href="#presentación"><span class="toc-section-number">1</span> Presentación</a></li>
 <li><a href="#competencias"><span class="toc-section-number">2</span> Competencias</a></li>
 <li><a href="#objetivos"><span class="toc-section-number">3</span> Objetivos</a></li>
-<li><a href="#descripción-de-la-práctica-a-realizar"><span class="toc-section-number">4</span> Descripción de la Práctica a realizar</a></li>
-<li><a href="#descripción-del-dataset.-por-qué-es-importante-y-qué-preguntaproblema-pretende-responder"><span class="toc-section-number">5</span> Descripción del dataset. ¿Por qué es importante y qué pregunta/problema pretende responder?</a></li>
+<li><a href="#descripción-de-la-práctica"><span class="toc-section-number">4</span> Descripción de la práctica</a></li>
+<li><a href="#descripción-del-dataset"><span class="toc-section-number">5</span> Descripción del dataset</a></li>
 <li><a href="#integración-y-selección-de-los-datos-de-interés-a-analizar"><span class="toc-section-number">6</span> Integración y selección de los datos de interés a analizar</a><ul>
 <li><a href="#carga-del-archivo"><span class="toc-section-number">6.1</span> Carga del archivo</a></li>
 <li><a href="#análisis-del-archivo"><span class="toc-section-number">6.2</span> Análisis del archivo</a></li>
@@ -1845,7 +1845,7 @@ David Dávila y Mónica Gómez
 </ul></li>
 <li><a href="#limpieza-de-los-datos"><span class="toc-section-number">7</span> Limpieza de los datos</a><ul>
 <li><a href="#normalización-de-los-datos-cuantitativos-y-cualitativos"><span class="toc-section-number">7.1</span> Normalización de los datos cuantitativos y cualitativos</a></li>
-<li><a href="#los-datos-contienen-ceros-o-elementos-vacíos-cómo-gestionarías-cada-uno-de-estos-casos"><span class="toc-section-number">7.2</span> ¿Los datos contienen ceros o elementos vacíos? ¿Cómo gestionarías cada uno de estos casos?</a></li>
+<li><a href="#elementos-vacíos-y-nulos"><span class="toc-section-number">7.2</span> Elementos vacíos y nulos</a></li>
 <li><a href="#identificación-y-tratamiento-de-valores-extremos."><span class="toc-section-number">7.3</span> Identificación y tratamiento de valores extremos.</a><ul>
 <li><a href="#customer_age"><span class="toc-section-number">7.3.1</span> Customer_Age</a></li>
 <li><a href="#months_on_book"><span class="toc-section-number">7.3.2</span> Months_on_book</a></li>
@@ -1859,16 +1859,25 @@ David Dávila y Mónica Gómez
 </ul></li>
 </ul></li>
 <li><a href="#exportación-de-los-datos-preprocesados"><span class="toc-section-number">8</span> Exportación de los datos preprocesados</a></li>
-<li><a href="#análisis-de-los-datos."><span class="toc-section-number">9</span> Análisis de los datos.</a><ul>
+<li><a href="#análisis-de-los-datos"><span class="toc-section-number">9</span> Análisis de los datos</a><ul>
 <li><a href="#selección-de-los-grupos-de-datos-que-se-quieren-analizarcomparar-planificación-de-los-análisis-a-aplicar."><span class="toc-section-number">9.1</span> Selección de los grupos de datos que se quieren analizar/comparar (planificación de los análisis a aplicar).</a></li>
 <li><a href="#comprobación-de-la-normalidad-y-homogeneidad-de-la-varianza."><span class="toc-section-number">9.2</span> Comprobación de la normalidad y homogeneidad de la varianza.</a></li>
-<li><a href="#aplicación-de-pruebas-estadísticas-para-comparar-los-grupos-de-datos.-en-función-de-los-datos-y-el-objetivo-del-estudio-aplicar-pruebas-de-contraste-de-hipótesis-correlaciones-regresiones-etc.-aplicar-al-menos-tres-métodos-de-análisis-diferentes."><span class="toc-section-number">9.3</span> Aplicación de pruebas estadísticas para comparar los grupos de datos. En función de los datos y el objetivo del estudio, aplicar pruebas de contraste de hipótesis, correlaciones, regresiones, etc. Aplicar al menos tres métodos de análisis diferentes.</a></li>
+<li><a href="#aplicación-de-pruebas-estadísticas-para-comparar-los-grupos-de-datos."><span class="toc-section-number">9.3</span> Aplicación de pruebas estadísticas para comparar los grupos de datos.</a><ul>
+<li><a href="#correlaciones"><span class="toc-section-number">9.3.1</span> Correlaciones</a></li>
+<li><a href="#contraste-de-hipótesis"><span class="toc-section-number">9.3.2</span> Contraste de hipótesis</a></li>
+<li><a href="#modelo-de-regresión-logística"><span class="toc-section-number">9.3.3</span> Modelo de regresión logística</a></li>
+<li><a href="#validación-cruzada"><span class="toc-section-number">9.3.4</span> Validación cruzada</a></li>
 </ul></li>
-<li><a href="#representación-de-los-resultados-a-partir-de-tablas-y-gráficas."><span class="toc-section-number">10</span> Representación de los resultados a partir de tablas y gráficas.</a><ul>
-<li><a href="#interpretacion-de-coeficientes-odds"><span class="toc-section-number">10.1</span> Interpretacion de coeficientes (odds)</a></li>
 </ul></li>
-<li><a href="#resolución-del-problema.-a-partir-de-los-resultados-obtenidos-cuáles-son-las-conclusiones-los-resultados-permiten-responder-al-problema"><span class="toc-section-number">11</span> Resolución del problema. A partir de los resultados obtenidos, ¿cuáles son las conclusiones? ¿Los resultados permiten responder al problema?</a></li>
-<li><a href="#código-hay-que-adjuntar-el-código-preferiblemente-en-r-con-el-que-se-ha-realizado-la-limpieza-análisis-y-representación-de-los-datos.-si-lo-preferís-también-podéis-trabajar-en-python."><span class="toc-section-number">12</span> Código: Hay que adjuntar el código, preferiblemente en R, con el que se ha realizado la limpieza, análisis y representación de los datos. Si lo preferís, también podéis trabajar en Python.</a></li>
+<li><a href="#representación-de-los-resultados-a-partir-de-tablas-y-gráficas"><span class="toc-section-number">10</span> Representación de los resultados a partir de tablas y gráficas</a><ul>
+<li><a href="#modelo-de-regresión-lineal"><span class="toc-section-number">10.1</span> Modelo de regresión lineal</a><ul>
+<li><a href="#interpretación-de-coeficientes-odds"><span class="toc-section-number">10.1.1</span> Interpretación de coeficientes (odds)</a></li>
+<li><a href="#predicciones"><span class="toc-section-number">10.1.2</span> Predicciones</a></li>
+</ul></li>
+<li><a href="#modelo-de-regresión-lineal-con-validación-cruzada"><span class="toc-section-number">10.2</span> Modelo de regresión lineal con validación cruzada</a></li>
+</ul></li>
+<li><a href="#resolución-del-problema."><span class="toc-section-number">11</span> Resolución del problema.</a></li>
+<li><a href="#código"><span class="toc-section-number">12</span> Código</a></li>
 <li><a href="#recursos"><span class="toc-section-number">13</span> Recursos</a></li>
 <li><a href="#criterios-de-valoración"><span class="toc-section-number">14</span> Criterios de valoración</a></li>
 <li><a href="#formato-y-fecha-de-entrega"><span class="toc-section-number">15</span> Formato y fecha de entrega</a></li>
@@ -1909,8 +1918,8 @@ David Dávila y Mónica Gómez
 </ul>
 <hr />
 </div>
-<div id="descripción-de-la-práctica-a-realizar" class="section level1">
-<h1><span class="header-section-number">4</span> Descripción de la Práctica a realizar</h1>
+<div id="descripción-de-la-práctica" class="section level1">
+<h1><span class="header-section-number">4</span> Descripción de la práctica</h1>
 <hr />
 <p>El objetivo de esta actividad será el tratamiento de un dataset, que puede ser el creado en la práctica 1 o bien cualquier dataset libre disponible en <a href="https://www.kaggle.com">Kaggle</a>. Algunos ejemplos de dataset con los que podéis trabajar son:</p>
 <p>● <a href="https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009">Red Wine Quality</a></p>
@@ -1918,9 +1927,10 @@ David Dávila y Mónica Gómez
 <p>El último ejemplo corresponde a una competición activa de Kaggle de manera que, opcionalmente, podéis aprovechar el trabajo realizado durante la práctica para entrar en esta competición. Siguiendo las principales etapas de un proyecto analítico, las diferentes tareas a realizar (y justificar) son las siguientes:</p>
 <hr />
 </div>
-<div id="descripción-del-dataset.-por-qué-es-importante-y-qué-preguntaproblema-pretende-responder" class="section level1">
-<h1><span class="header-section-number">5</span> Descripción del dataset. ¿Por qué es importante y qué pregunta/problema pretende responder?</h1>
+<div id="descripción-del-dataset" class="section level1">
+<h1><span class="header-section-number">5</span> Descripción del dataset</h1>
 <hr />
+<p><strong>¿Por qué es importante y qué pregunta/problema pretende responder?</strong></p>
 <p>El dataset elegido se llama ‘Credit Card customers’ y puede descargarse desde la plataforma <a href="https://www.kaggle.com/sakshigoyal7/credit-card-customers">Kaggle</a>. Su importancia radica en que trata de resolver un frecuente problema de negocios. Este conjunto de datos contiene la información de una agencia bancaria, donde el administrador desea conocer el o los motivos por los cuales están perdiendo clientes, así como prevenir el así llamado ‘Credit Card Churning’.</p>
 <p>Habiendo identificado los clientes que potencialmente desean prescindir de algún servicio bancario, la agencia podría anticipar estrategias para lograr que dichos clientes se queden por más tiempo.</p>
 <p>Este dataset contiene información sobre 10,127 clientes. Entre los datos descriptores se encuentran 23 variables que son:</p>
@@ -2055,9 +2065,11 @@ David Dávila y Mónica Gómez
 </tbody>
 </table>
 <p>Las modificaciones realizadas (preprocesamiento) se muestran a continuación.</p>
+<hr />
 </div>
 <div id="integración-y-selección-de-los-datos-de-interés-a-analizar" class="section level1">
 <h1><span class="header-section-number">6</span> Integración y selección de los datos de interés a analizar</h1>
+<hr />
 <div id="carga-del-archivo" class="section level2">
 <h2><span class="header-section-number">6.1</span> Carga del archivo</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#getwd()</span></span></code></pre></div>
@@ -2226,7 +2238,7 @@ David Dávila y Mónica Gómez
 <p>Los gráficos generados nos permiten explorar los datos de forma preliminar. Algunos de los insights que se pueden extraer son:</p>
 <ul>
 <li><p>Variables cuantitativas: presentan una alta dispersión en sus datos.</p></li>
-<li><p>Variables cuanlitativas: se puede observar que el banco en cuestión presenta una mayor cantidad de clientes con cuentas activas que inactivas, existen más mujeres que hombres, la mayoría están solteros o casados con estudios terminados y que usan la tarjeta de crédito categoría “Blue”.</p></li>
+<li><p>Variables cualitativas: se puede observar que el banco en cuestión presenta una mayor cantidad de clientes con cuentas activas que inactivas, existen más mujeres que hombres, la mayoría están solteros o casados con estudios terminados y que usan la tarjeta de crédito categoría “Blue”.</p></li>
 </ul>
 <hr />
 </div>
@@ -2235,10 +2247,8 @@ David Dávila y Mónica Gómez
 <h1><span class="header-section-number">7</span> Limpieza de los datos</h1>
 <hr />
 <p>El dataset procesado se denomina ‘BankChurners_clean.csv’ y se encuentra alojado en este mismo repositorio.</p>
-<hr />
 <div id="normalización-de-los-datos-cuantitativos-y-cualitativos" class="section level2">
 <h2><span class="header-section-number">7.1</span> Normalización de los datos cuantitativos y cualitativos</h2>
-<hr />
 <p>Estas normalizaciones tienen como objetivo uniformizar los formatos. En este caso no es necesario normalizarlos. Sin embargo, los valores perdidos o valores extremos (de haberlos), se tratarán más adelante.</p>
 <p>Se detallan los tipos de datos por variable:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">sapply</span>(df, <span class="cf">function</span>(x) <span class="kw">class</span>(x))</span></code></pre></div>
@@ -2256,11 +2266,10 @@ David Dávila y Mónica Gómez
 ##                &quot;numeric&quot;                &quot;numeric&quot;                &quot;integer&quot; 
 ##           Total_Trans_Ct      Total_Ct_Chng_Q4_Q1    Avg_Utilization_Ratio 
 ##                &quot;integer&quot;                &quot;numeric&quot;                &quot;numeric&quot;</code></pre>
-<hr />
 </div>
-<div id="los-datos-contienen-ceros-o-elementos-vacíos-cómo-gestionarías-cada-uno-de-estos-casos" class="section level2">
-<h2><span class="header-section-number">7.2</span> ¿Los datos contienen ceros o elementos vacíos? ¿Cómo gestionarías cada uno de estos casos?</h2>
-<hr />
+<div id="elementos-vacíos-y-nulos" class="section level2">
+<h2><span class="header-section-number">7.2</span> Elementos vacíos y nulos</h2>
+<p><strong>¿Los datos contienen ceros o elementos vacíos? ¿Cómo gestionarías cada uno de estos casos?</strong></p>
 <p>Este dataset en particular presenta una completitud del 100% como se demuestra a continuación:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">sapply</span>(df, <span class="cf">function</span>(x) <span class="kw">sum</span>(<span class="kw">is.na</span>(x)))</span></code></pre></div>
 <pre><code>##                CLIENTNUM           Attrition_Flag             Customer_Age 
@@ -2278,12 +2287,10 @@ David Dávila y Mónica Gómez
 ##           Total_Trans_Ct      Total_Ct_Chng_Q4_Q1    Avg_Utilization_Ratio 
 ##                        0                        0                        0</code></pre>
 <p>En el caso de haber encontrado elementos vacíos o nulos es conveniente conocer la fuente de los datos antes de proceder a eliminarlos ya que se puede estar perdiendo valiosa información. Lo que se hubiera hecho en este caso es una imputación de valores vacíos/nulos y, en medida de lo posible, evitar la eliminación de algún valor.</p>
-<hr />
 </div>
 <div id="identificación-y-tratamiento-de-valores-extremos." class="section level2">
 <h2><span class="header-section-number">7.3</span> Identificación y tratamiento de valores extremos.</h2>
-<hr />
-<p>Se procede a hacer la exploración de outliers con el diagráma de caja y bigote, para posteriormente de acuerdo a un análisis por cada variable extraer e imputar los valores con la mediana de aquellas variables donde se haya considerado meritorio hacerlo.</p>
+<p>Se procede a hacer la exploración de outliers con el diagrama de caja y bigote, para posteriormente de acuerdo a un análisis por cada variable extraer e imputar los valores con la mediana de aquellas variables donde se haya considerado meritorio hacerlo.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb21-2"><a href="#cb21-2"></a></span>
 <span id="cb21-3"><a href="#cb21-3"></a><span class="co">#p1 &lt;- boxplot(CLIENTNUM, main=&quot;CLIENTNUM&quot;)</span></span>
@@ -2314,10 +2321,8 @@ David Dávila y Mónica Gómez
 <p>La distribución no es simétrica para la mayoría de variables, y es simétrica en los casos de las variables: “Customer_Age”, “Dependent_count” y “Months_on_book”.</p>
 <p>Para la mayoría de variables se ha optado por mantener los valores originales con excepción de aquellos outliers encontrados para las variables: “”Customer_Age” y Total_Trans_Ct”.</p>
 <p>A continuación se detalla un análisis variable por variable:</p>
-<hr />
 <div id="customer_age" class="section level3">
 <h3><span class="header-section-number">7.3.1</span> Customer_Age</h3>
-<hr />
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>x&lt;-<span class="kw">boxplot.stats</span>(Customer_Age)<span class="op">$</span>out</span>
 <span id="cb25-2"><a href="#cb25-2"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(Customer_Age <span class="op">%in%</span><span class="st"> </span>x)</span>
 <span id="cb25-3"><a href="#cb25-3"></a>ca &lt;-<span class="st"> </span>df<span class="op">$</span>Customer_Age[idx] <span class="co">#Valores atípicos</span></span>
@@ -2344,11 +2349,9 @@ David Dávila y Mónica Gómez
 <span id="cb38-4"><a href="#cb38-4"></a>}</span>
 <span id="cb38-5"><a href="#cb38-5"></a>df<span class="op">$</span>Customer_Age[idx] <span class="co">#mostramos el resultado</span></span></code></pre></div>
 <pre><code>## [1] 46 46</code></pre>
-<hr />
 </div>
 <div id="months_on_book" class="section level3">
 <h3><span class="header-section-number">7.3.2</span> Months_on_book</h3>
-<hr />
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>x&lt;-<span class="kw">boxplot.stats</span>(Months_on_book)<span class="op">$</span>out</span>
 <span id="cb40-2"><a href="#cb40-2"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(Months_on_book <span class="op">%in%</span><span class="st"> </span>x)</span>
 <span id="cb40-3"><a href="#cb40-3"></a>mob &lt;-<span class="st"> </span>df<span class="op">$</span>Months_on_book[idx] <span class="co">#Valores atípicos</span></span>
@@ -2359,11 +2362,9 @@ David Dávila y Mónica Gómez
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="kw">length</span>(mob)</span></code></pre></div>
 <pre><code>## [1] 386</code></pre>
 <p>Como se observa, la variable ‘Months_on_book’ tiene 386 outliers. Sin embargo, dado que representa el período de pertenencia con la entidad financiera en meses va a ser normal el encontrar clientes muy antiguos (56 meses) o muy recientes (13 meses) por lo que no se los eliminará del dataset.</p>
-<hr />
 </div>
 <div id="months_inactive_12_mon" class="section level3">
 <h3><span class="header-section-number">7.3.3</span> Months_Inactive_12_mon</h3>
-<hr />
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>x&lt;-<span class="kw">boxplot.stats</span>(Months_Inactive_<span class="dv">12</span>_mon)<span class="op">$</span>out</span>
 <span id="cb46-2"><a href="#cb46-2"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(Months_Inactive_<span class="dv">12</span>_mon <span class="op">%in%</span><span class="st"> </span>x)</span>
 <span id="cb46-3"><a href="#cb46-3"></a>mi &lt;-<span class="st"> </span>df<span class="op">$</span>Months_Inactive_<span class="dv">12</span>_mon[idx] <span class="co">#Valores atípicos</span></span>
@@ -2374,11 +2375,9 @@ David Dávila y Mónica Gómez
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="kw">length</span>(mi)</span></code></pre></div>
 <pre><code>## [1] 331</code></pre>
 <p>La variable ‘Months_Inactive_12_mon’ tiene 331 outliers. Sin embargo, dado que pueden haber clientes que han permanecido inactivos entre 0-6 meses, este podría ser un parámetro a considerar para saber si el cliente está por suspender o no algún servicio bancario. Por lo tanto, no se los eliminarán del dataset.</p>
-<hr />
 </div>
 <div id="contacts_count_12_mon" class="section level3">
 <h3><span class="header-section-number">7.3.4</span> Contacts_Count_12_mon</h3>
-<hr />
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>x&lt;-<span class="kw">boxplot.stats</span>(Contacts_Count_<span class="dv">12</span>_mon)<span class="op">$</span>out</span>
 <span id="cb52-2"><a href="#cb52-2"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(Contacts_Count_<span class="dv">12</span>_mon <span class="op">%in%</span><span class="st"> </span>x)</span>
 <span id="cb52-3"><a href="#cb52-3"></a>cc &lt;-<span class="st"> </span>df<span class="op">$</span>Contacts_Count_<span class="dv">12</span>_mon[idx] <span class="co">#Valores atípicos</span></span>
@@ -2389,11 +2388,9 @@ David Dávila y Mónica Gómez
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="kw">length</span>(cc)</span></code></pre></div>
 <pre><code>## [1] 629</code></pre>
 <p>La variable ‘Contacts_Count_12_mon’ presenta 629 outliers pero dado el contexto de que pueden haber clientes con los cuales no se ha contactado entre 0-6 meses, este podría ser un parámetro a considerar para saber si el cliente está por suspender o no algún servicio bancario. Por lo tanto, no se los eliminarán del dataset.</p>
-<hr />
 </div>
 <div id="credit_limit" class="section level3">
 <h3><span class="header-section-number">7.3.5</span> Credit_Limit</h3>
-<hr />
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>x&lt;-<span class="kw">boxplot.stats</span>(Credit_Limit)<span class="op">$</span>out</span>
 <span id="cb58-2"><a href="#cb58-2"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(Credit_Limit <span class="op">%in%</span><span class="st"> </span>x)</span>
 <span id="cb58-3"><a href="#cb58-3"></a>cl &lt;-<span class="st"> </span>df<span class="op">$</span>Credit_Limit[idx] <span class="co">#Valores atípicos</span></span>
@@ -2404,11 +2401,9 @@ David Dávila y Mónica Gómez
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="kw">length</span>(cl)</span></code></pre></div>
 <pre><code>## [1] 984</code></pre>
 <p>La variable ‘Credit_Limit’ presenta 984 outliers pero dado que el límite de crédito puede variar dependiendo de muchos factores para a un cliente en específico se opta por mantenerlos.</p>
-<hr />
 </div>
 <div id="avg_open_to_buy" class="section level3">
 <h3><span class="header-section-number">7.3.6</span> Avg_Open_To_Buy</h3>
-<hr />
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>x&lt;-<span class="kw">boxplot.stats</span>(Avg_Open_To_Buy)<span class="op">$</span>out</span>
 <span id="cb64-2"><a href="#cb64-2"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(Avg_Open_To_Buy <span class="op">%in%</span><span class="st"> </span>x)</span>
 <span id="cb64-3"><a href="#cb64-3"></a>avg &lt;-<span class="st"> </span>df<span class="op">$</span>Avg_Open_To_Buy[idx] <span class="co">#Valores atípicos</span></span>
@@ -2419,11 +2414,9 @@ David Dávila y Mónica Gómez
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="kw">length</span>(avg)</span></code></pre></div>
 <pre><code>## [1] 963</code></pre>
 <p>Dado que la variable ‘Avg_Open_To_Buy’ presenta 963 outliers y representa línea de crédito abierta para compra se mantienen los valores.</p>
-<hr />
 </div>
 <div id="total_amt_chng_q4_q1" class="section level3">
 <h3><span class="header-section-number">7.3.7</span> Total_Amt_Chng_Q4_Q1</h3>
-<hr />
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>x&lt;-<span class="kw">boxplot.stats</span>(Total_Amt_Chng_Q4_Q1)<span class="op">$</span>out</span>
 <span id="cb70-2"><a href="#cb70-2"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(Total_Amt_Chng_Q4_Q1 <span class="op">%in%</span><span class="st"> </span>x)</span>
 <span id="cb70-3"><a href="#cb70-3"></a>tac &lt;-<span class="st"> </span>df<span class="op">$</span>Total_Amt_Chng_Q4_Q1[idx] <span class="co">#Valores atípicos</span></span>
@@ -2434,11 +2427,9 @@ David Dávila y Mónica Gómez
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="kw">length</span>(tac)</span></code></pre></div>
 <pre><code>## [1] 1954</code></pre>
 <p>La variable ‘Total_Amt_Chng_Q4_Q1’ tiene 1954 outliers y muestra los cambios transaccionales que pueden ser muy variables dependiendo del perfil de cada cliente, así que se opta por mantenerlos.</p>
-<hr />
 </div>
 <div id="total_trans_amt" class="section level3">
 <h3><span class="header-section-number">7.3.8</span> Total_Trans_Amt</h3>
-<hr />
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a>x&lt;-<span class="kw">boxplot.stats</span>(Total_Trans_Amt)<span class="op">$</span>out</span>
 <span id="cb76-2"><a href="#cb76-2"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(Total_Trans_Amt <span class="op">%in%</span><span class="st"> </span>x)</span>
 <span id="cb76-3"><a href="#cb76-3"></a>tta &lt;-<span class="st"> </span>df<span class="op">$</span>Total_Trans_Amt[idx] <span class="co">#Valores atípicos</span></span>
@@ -2449,11 +2440,9 @@ David Dávila y Mónica Gómez
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a><span class="kw">length</span>(tta)</span></code></pre></div>
 <pre><code>## [1] 896</code></pre>
 <p>La variable ‘Total_Trans_Amt’ tiene 896 outliers y muestra la totalidad de cantidad de transacciones que pueden ser muy variables de persona a persona, así que se opta por mantenerlos.</p>
-<hr />
 </div>
 <div id="total_trans_ct" class="section level3">
 <h3><span class="header-section-number">7.3.9</span> Total_Trans_Ct</h3>
-<hr />
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a>x&lt;-<span class="kw">boxplot.stats</span>(Total_Trans_Ct)<span class="op">$</span>out</span>
 <span id="cb82-2"><a href="#cb82-2"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(Total_Trans_Ct <span class="op">%in%</span><span class="st"> </span>x)</span>
 <span id="cb82-3"><a href="#cb82-3"></a>ttc &lt;-<span class="st"> </span>df<span class="op">$</span>Total_Trans_Ct[idx] <span class="co">#Valores atípicos</span></span>
@@ -2487,34 +2476,582 @@ David Dávila y Mónica Gómez
 <hr />
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1"></a><span class="co"># Exportación de los datos limpios en formato .csv</span></span>
 <span id="cb95-2"><a href="#cb95-2"></a><span class="kw">write.csv</span>(df, <span class="st">&quot;BankChurners_clean.csv&quot;</span>)</span></code></pre></div>
+<hr />
 </div>
-<div id="análisis-de-los-datos." class="section level1">
-<h1><span class="header-section-number">9</span> Análisis de los datos.</h1>
+<div id="análisis-de-los-datos" class="section level1">
+<h1><span class="header-section-number">9</span> Análisis de los datos</h1>
+<hr />
 <div id="selección-de-los-grupos-de-datos-que-se-quieren-analizarcomparar-planificación-de-los-análisis-a-aplicar." class="section level2">
 <h2><span class="header-section-number">9.1</span> Selección de los grupos de datos que se quieren analizar/comparar (planificación de los análisis a aplicar).</h2>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1"></a><span class="co"># Se cargan las librerías necesarias</span></span>
+<span id="cb96-2"><a href="#cb96-2"></a><span class="kw">library</span>(MASS)</span>
+<span id="cb96-3"><a href="#cb96-3"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb96-4"><a href="#cb96-4"></a><span class="kw">library</span>(plyr)</span></code></pre></div>
+<p>Para este estudio se tomarán algunas variables de tipo categórico para observar si se comportan de una forma distinta ante la variable que deseamos predecir. Antes de ello se eliminará la variable CLIENTUM de nuestro conjunto de datos.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1"></a>data=<span class="kw">subset</span>(df, <span class="dt">select=</span><span class="op">-</span><span class="kw">c</span>(CLIENTNUM))</span>
+<span id="cb97-2"><a href="#cb97-2"></a><span class="kw">colnames</span>(data)</span></code></pre></div>
+<pre><code>##  [1] &quot;Attrition_Flag&quot;           &quot;Customer_Age&quot;            
+##  [3] &quot;Gender&quot;                   &quot;Dependent_count&quot;         
+##  [5] &quot;Education_Level&quot;          &quot;Marital_Status&quot;          
+##  [7] &quot;Income_Category&quot;          &quot;Card_Category&quot;           
+##  [9] &quot;Months_on_book&quot;           &quot;Total_Relationship_Count&quot;
+## [11] &quot;Months_Inactive_12_mon&quot;   &quot;Contacts_Count_12_mon&quot;   
+## [13] &quot;Credit_Limit&quot;             &quot;Total_Revolving_Bal&quot;     
+## [15] &quot;Avg_Open_To_Buy&quot;          &quot;Total_Amt_Chng_Q4_Q1&quot;    
+## [17] &quot;Total_Trans_Amt&quot;          &quot;Total_Trans_Ct&quot;          
+## [19] &quot;Total_Ct_Chng_Q4_Q1&quot;      &quot;Avg_Utilization_Ratio&quot;</code></pre>
+<p>En este caso nos interesarán los grupos correspondientes al género, el nivel de educación y estado marital.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1"></a><span class="co">#Selección de grupos.</span></span>
+<span id="cb99-2"><a href="#cb99-2"></a><span class="co">#Agrupación por genero.</span></span>
+<span id="cb99-3"><a href="#cb99-3"></a>data.femenino&lt;-data[data<span class="op">$</span>Gender<span class="op">==</span><span class="st">&quot;F&quot;</span>,]</span>
+<span id="cb99-4"><a href="#cb99-4"></a>data.masculino&lt;-data[data<span class="op">$</span>Gender<span class="op">==</span><span class="st">&quot;M&quot;</span>,]</span>
+<span id="cb99-5"><a href="#cb99-5"></a><span class="co">#Agrupación por nivel de educación</span></span>
+<span id="cb99-6"><a href="#cb99-6"></a>data.HighSchool&lt;-data[data<span class="op">$</span>Education_Level<span class="op">==</span><span class="st">&quot;High School&quot;</span>,]</span>
+<span id="cb99-7"><a href="#cb99-7"></a>data.Graduate&lt;-data[data<span class="op">$</span>Education_Level<span class="op">==</span><span class="st">&quot;Graduate&quot;</span>,]</span>
+<span id="cb99-8"><a href="#cb99-8"></a>data.Uneducated&lt;-data[data<span class="op">$</span>Education_Level<span class="op">==</span><span class="st">&quot;Uneducated&quot;</span>,]</span>
+<span id="cb99-9"><a href="#cb99-9"></a>data.Unknown&lt;-data[data<span class="op">$</span>Education_Level<span class="op">==</span><span class="st">&quot;Unknown&quot;</span>,]</span>
+<span id="cb99-10"><a href="#cb99-10"></a>data.College&lt;-data[data<span class="op">$</span>Education_Level<span class="op">==</span><span class="st">&quot;College&quot;</span>,]</span>
+<span id="cb99-11"><a href="#cb99-11"></a>data.Postgraduate&lt;-data[data<span class="op">$</span>Education_Level<span class="op">==</span><span class="st">&quot;Post-Graduate&quot;</span>,]</span>
+<span id="cb99-12"><a href="#cb99-12"></a>data.Doctorate&lt;-data[data<span class="op">$</span>Education_Level<span class="op">==</span><span class="st">&quot;Doctorate&quot;</span>,]</span>
+<span id="cb99-13"><a href="#cb99-13"></a><span class="co">#Agrupación por estado marital</span></span>
+<span id="cb99-14"><a href="#cb99-14"></a>data.Married&lt;-data[data<span class="op">$</span>Marital_Status<span class="op">==</span><span class="st">&quot;Married&quot;</span>,]</span>
+<span id="cb99-15"><a href="#cb99-15"></a>data.Single&lt;-data[data<span class="op">$</span>Marital_Status<span class="op">==</span><span class="st">&quot;Single&quot;</span>,]</span>
+<span id="cb99-16"><a href="#cb99-16"></a>data.UnknownStatus&lt;-data[data<span class="op">$</span>Marital_Status<span class="op">==</span><span class="st">&quot;Unknown&quot;</span>,]</span>
+<span id="cb99-17"><a href="#cb99-17"></a>data.Divorced&lt;-data[data<span class="op">$</span>Marital_Status<span class="op">==</span><span class="st">&quot;Divorced&quot;</span>,]</span></code></pre></div>
+<p>Por último dado que nuestra variable a predecir se encuentra con los valores “Existing Customer” y “Attrited Customer” se procede a cambiarla con notación binaria. Es decir, “Attrited Customer” tomará el valor 1 y “Existing Customer” tomará el valor 0.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1"></a><span class="co">#Se convierten a dummy</span></span>
+<span id="cb100-2"><a href="#cb100-2"></a>data<span class="op">$</span>Attrition_Flag&lt;-<span class="kw">ifelse</span>(data<span class="op">$</span>Attrition_Flag<span class="op">==</span><span class="st">&quot;Attrited Customer&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span></code></pre></div>
 </div>
 <div id="comprobación-de-la-normalidad-y-homogeneidad-de-la-varianza." class="section level2">
 <h2><span class="header-section-number">9.2</span> Comprobación de la normalidad y homogeneidad de la varianza.</h2>
+<p>Es de principal importancia dependiendo del modelo a aplicar, el realizar la correspondiente comprobación de normalidad y homogeneidad de la varianza en nuestro conjunto de datos. Por lo cual, para realizar la comprobación de nuestras variables sobre una población normalmente distribuida, se utilizará la prueba de normalidad de Anderson-Darling.</p>
+<p>Teniendo en cuenta un <span class="math inline">\(\alpha =0.05\)</span>, si obtenemos un p-valor superior al alpha mencionado anteriormente, entonces no rechazaremos nuestra hipótesis nula y los valores vendrán de una distribución/población normal.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1"></a><span class="kw">library</span>(nortest)</span>
+<span id="cb101-2"><a href="#cb101-2"></a>col.names=<span class="kw">colnames</span>(data)</span>
+<span id="cb101-3"><a href="#cb101-3"></a>alpha =<span class="st"> </span><span class="fl">0.05</span></span>
+<span id="cb101-4"><a href="#cb101-4"></a></span>
+<span id="cb101-5"><a href="#cb101-5"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(data)) {</span>
+<span id="cb101-6"><a href="#cb101-6"></a>  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">cat</span>(<span class="st">&quot;Variables que no siguen una distribución normal:</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb101-7"><a href="#cb101-7"></a>  <span class="cf">if</span> (<span class="kw">is.integer</span>(data[[i]]) <span class="op">|</span><span class="st"> </span><span class="kw">is.numeric</span>(data[[i]])) {</span>
+<span id="cb101-8"><a href="#cb101-8"></a>    p_val =<span class="st"> </span><span class="kw">ad.test</span>(data[[i]])<span class="op">$</span>p.value</span>
+<span id="cb101-9"><a href="#cb101-9"></a>    <span class="cf">if</span> (p_val <span class="op">&lt;</span><span class="st"> </span>alpha) {</span>
+<span id="cb101-10"><a href="#cb101-10"></a>      <span class="kw">cat</span>(col.names[i])</span>
+<span id="cb101-11"><a href="#cb101-11"></a>      <span class="co"># Format output</span></span>
+<span id="cb101-12"><a href="#cb101-12"></a>      <span class="cf">if</span> (i <span class="op">&lt;</span><span class="st"> </span><span class="kw">ncol</span>(data) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb101-13"><a href="#cb101-13"></a>      <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb101-14"><a href="#cb101-14"></a>    }</span>
+<span id="cb101-15"><a href="#cb101-15"></a>  }</span>
+<span id="cb101-16"><a href="#cb101-16"></a>}</span></code></pre></div>
+<pre><code>## Variables que no siguen una distribución normal:
+## Attrition_Flag
+## Customer_Age
+## Dependent_count
+## Months_on_book
+## Total_Relationship_Count
+## Months_Inactive_12_mon
+## Contacts_Count_12_mon
+## Credit_Limit
+## Total_Revolving_Bal
+## Avg_Open_To_Buy
+## Total_Amt_Chng_Q4_Q1
+## Total_Trans_Amt
+## Total_Trans_Ct
+## Total_Ct_Chng_Q4_Q1Avg_Utilization_Ratio</code></pre>
+<p>Posterior a ello, realizamos la comprobación sobre la homogeneidad de las varianzas con el test de Fligner-Killen. Para nuestro caso, estudiaremos la homogeneidad en cuanto a los grupos conformados por las siguientes variables: Género, nivel educativo, estado marital, categoría de ingresos y categoría de la tarjeta. Recordemos que la hipótesis nula consiste en que las varianzas de los grupos son iguales.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1"></a><span class="kw">fligner.test</span>(Attrition_Flag<span class="op">~</span>Gender, <span class="dt">data=</span>data)</span></code></pre></div>
+<pre><code>## 
+##  Fligner-Killeen test of homogeneity of variances
+## 
+## data:  Attrition_Flag by Gender
+## Fligner-Killeen:med chi-squared = 14.067, df = 1, p-value = 0.0001764</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1"></a><span class="kw">fligner.test</span>(Attrition_Flag<span class="op">~</span>Education_Level, <span class="dt">data=</span>data)</span></code></pre></div>
+<pre><code>## 
+##  Fligner-Killeen test of homogeneity of variances
+## 
+## data:  Attrition_Flag by Education_Level
+## Fligner-Killeen:med chi-squared = 12.51, df = 6, p-value = 0.05151</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1"></a><span class="kw">fligner.test</span>(Attrition_Flag<span class="op">~</span>Marital_Status, <span class="dt">data=</span>data)</span></code></pre></div>
+<pre><code>## 
+##  Fligner-Killeen test of homogeneity of variances
+## 
+## data:  Attrition_Flag by Marital_Status
+## Fligner-Killeen:med chi-squared = 6.0555, df = 3, p-value = 0.1089</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1"></a><span class="kw">fligner.test</span>(Attrition_Flag<span class="op">~</span>Income_Category, <span class="dt">data=</span>data)</span></code></pre></div>
+<pre><code>## 
+##  Fligner-Killeen test of homogeneity of variances
+## 
+## data:  Attrition_Flag by Income_Category
+## Fligner-Killeen:med chi-squared = 12.831, df = 5, p-value = 0.02502</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1"></a><span class="kw">fligner.test</span>(Attrition_Flag<span class="op">~</span>Card_Category, <span class="dt">data=</span>data)</span></code></pre></div>
+<pre><code>## 
+##  Fligner-Killeen test of homogeneity of variances
+## 
+## data:  Attrition_Flag by Card_Category
+## Fligner-Killeen:med chi-squared = 2.234, df = 3, p-value = 0.5253</code></pre>
+<p>Teniendo en cuenta los resultados anteriores, solamente podemos no rechazar la hipótesis nula para las variables: nivel educativo, estado marital y categoría de la tarjeta. Dado que se obtienen que el valor-p asociado a la prueba es mayor que el alpha establecido.</p>
 </div>
-<div id="aplicación-de-pruebas-estadísticas-para-comparar-los-grupos-de-datos.-en-función-de-los-datos-y-el-objetivo-del-estudio-aplicar-pruebas-de-contraste-de-hipótesis-correlaciones-regresiones-etc.-aplicar-al-menos-tres-métodos-de-análisis-diferentes." class="section level2">
-<h2><span class="header-section-number">9.3</span> Aplicación de pruebas estadísticas para comparar los grupos de datos. En función de los datos y el objetivo del estudio, aplicar pruebas de contraste de hipótesis, correlaciones, regresiones, etc. Aplicar al menos tres métodos de análisis diferentes.</h2>
+<div id="aplicación-de-pruebas-estadísticas-para-comparar-los-grupos-de-datos." class="section level2">
+<h2><span class="header-section-number">9.3</span> Aplicación de pruebas estadísticas para comparar los grupos de datos.</h2>
+<p><strong>En función de los datos y el objetivo del estudio, aplicar pruebas de contraste de hipótesis, correlaciones, regresiones, etc. Aplicar al menos tres métodos de análisis diferentes.</strong></p>
+<div id="correlaciones" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Correlaciones</h3>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1"></a>corr_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nc =</span> <span class="dv">2</span>, <span class="dt">nr =</span> <span class="dv">0</span>)</span>
+<span id="cb113-2"><a href="#cb113-2"></a><span class="kw">colnames</span>(corr_matrix) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;estimate&quot;</span>, <span class="st">&quot;p-value&quot;</span>)</span>
+<span id="cb113-3"><a href="#cb113-3"></a><span class="co"># Calcular el coeficiente de correlación para cada variable cuantitativa</span></span>
+<span id="cb113-4"><a href="#cb113-4"></a><span class="co"># con respecto al campo &quot;precio&quot;</span></span>
+<span id="cb113-5"><a href="#cb113-5"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(<span class="kw">ncol</span>(data) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)) {</span>
+<span id="cb113-6"><a href="#cb113-6"></a>  <span class="cf">if</span> (<span class="kw">is.integer</span>(data[[i]]) <span class="op">|</span><span class="st"> </span><span class="kw">is.numeric</span>(data[[i]])) {</span>
+<span id="cb113-7"><a href="#cb113-7"></a>    spearman_test =<span class="st"> </span><span class="kw">cor.test</span>(data[[i]],</span>
+<span id="cb113-8"><a href="#cb113-8"></a>                             data[[<span class="dv">1</span>]],</span>
+<span id="cb113-9"><a href="#cb113-9"></a>                             <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</span>
+<span id="cb113-10"><a href="#cb113-10"></a>    corr_coef =<span class="st"> </span>spearman_test<span class="op">$</span>estimate</span>
+<span id="cb113-11"><a href="#cb113-11"></a>    p_val =<span class="st"> </span>spearman_test<span class="op">$</span>p.value</span>
+<span id="cb113-12"><a href="#cb113-12"></a>    <span class="co"># Add row to matrix</span></span>
+<span id="cb113-13"><a href="#cb113-13"></a>    pair =<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">nrow =</span> <span class="dv">1</span>)</span>
+<span id="cb113-14"><a href="#cb113-14"></a>    pair[<span class="dv">1</span>][<span class="dv">1</span>] =<span class="st"> </span>corr_coef</span>
+<span id="cb113-15"><a href="#cb113-15"></a>    pair[<span class="dv">2</span>][<span class="dv">1</span>] =<span class="st"> </span>p_val</span>
+<span id="cb113-16"><a href="#cb113-16"></a>    corr_matrix &lt;-<span class="st"> </span><span class="kw">rbind</span>(corr_matrix, pair)</span>
+<span id="cb113-17"><a href="#cb113-17"></a>    <span class="kw">rownames</span>(corr_matrix)[<span class="kw">nrow</span>(corr_matrix)] &lt;-<span class="st"> </span><span class="kw">colnames</span>(data)[i]</span>
+<span id="cb113-18"><a href="#cb113-18"></a>  }</span>
+<span id="cb113-19"><a href="#cb113-19"></a>}</span>
+<span id="cb113-20"><a href="#cb113-20"></a></span>
+<span id="cb113-21"><a href="#cb113-21"></a>corr_matrix</span></code></pre></div>
+<pre><code>##                             estimate       p-value
+## Attrition_Flag            1.00000000  0.000000e+00
+## Customer_Age              0.01766624  7.544887e-02
+## Dependent_count           0.02098332  3.472192e-02
+## Months_on_book            0.01529958  1.236719e-01
+## Total_Relationship_Count -0.14967404  8.092007e-52
+## Months_Inactive_12_mon    0.17183886  5.792309e-68
+## Contacts_Count_12_mon     0.18903770  4.123362e-82
+## Credit_Limit             -0.05090987  2.961133e-07
+## Total_Revolving_Bal      -0.24055101 2.921366e-133
+## Avg_Open_To_Buy           0.02750028  5.646767e-03
+## Total_Amt_Chng_Q4_Q1     -0.06430376  9.357322e-11
+## Total_Trans_Amt          -0.22378218 3.915150e-115
+## Total_Trans_Ct           -0.37608761  0.000000e+00
+## Total_Ct_Chng_Q4_Q1      -0.20240148  4.225131e-94</code></pre>
+<p>Los valores observados en la matriz de correlación, no indican una fuerte correlación teniendo en cuenta nuestra variable objetivo, ya que por lo general están variando entre <span class="math inline">\(-0.37\)</span> y <span class="math inline">\(0.18\)</span>, por lo cual se pueden clasificar dichos valores dentro de una correlación débil.</p>
+</div>
+<div id="contraste-de-hipótesis" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> Contraste de hipótesis</h3>
+<p>Para ello se utilizará la prueba de Fisher, la cual es un test exacto cuando se quiere observar si existe asociación entre dos variables de tipo cualitativo, es decir, si las proporciones de una variable son diferentes dependiendo del valor que adquiera la otra variable.</p>
+<p><strong>H0:</strong> Las variables son independientes por lo que una variable no varia entre los distintos niveles de la otra variable.</p>
+<p><strong>H1:</strong> Las variables son dependientes, una variable varia entre los distintos niveles de la otra variable.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1"></a>tabla &lt;-<span class="st"> </span><span class="kw">table</span>(data<span class="op">$</span>Gender, data<span class="op">$</span>Attrition_Flag)</span>
+<span id="cb115-2"><a href="#cb115-2"></a>tabla</span></code></pre></div>
+<pre><code>##    
+##        0    1
+##   F 4428  930
+##   M 4072  697</code></pre>
+<p><strong>Test de Fisher.</strong></p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1"></a><span class="kw">fisher.test</span>(<span class="dt">x =</span> tabla, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Fisher&#39;s Exact Test for Count Data
+## 
+## data:  tabla
+## p-value = 0.0001825
+## alternative hypothesis: true odds ratio is not equal to 1
+## 95 percent confidence interval:
+##  0.7310913 0.9082957
+## sample estimates:
+## odds ratio 
+##  0.8150034</code></pre>
+<p>Teniendo en cuenta el valor p observado, es igual a <span class="math inline">\(0.0001825\)</span> es menor que el nivel de significancia 0.05, rechazamos la hipótesis nula. Es decir, las variables de Attrition_Flag y Gender son dependientes. Este pequeño análisis nos ayudará a futuro para ingresar las variables en el modelo de regresión logística.</p>
+</div>
+<div id="modelo-de-regresión-logística" class="section level3">
+<h3><span class="header-section-number">9.3.3</span> Modelo de regresión logística</h3>
+<p>Se plantea un primer modelo de regresión logística teniendo en cuenta que nuestra variable objetivo es binaria. Además se traen variables de interés en las cuales trataremos de predecir la estancia de los clientes dentro de la empresa. Entre dichas variables encontramos por ejemplo: edad del usuario, género, si tiene personas que dependen del usuario, nivel educativo, estado marital, categoría de ingresos, categoría de la tarjeta entre otros.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1"></a>logisticModelFull &lt;-<span class="st"> </span><span class="kw">glm</span>(Attrition_Flag <span class="op">~</span><span class="st">  </span>Customer_Age<span class="op">+</span>Gender<span class="op">+</span>Dependent_count<span class="op">+</span></span>
+<span id="cb119-2"><a href="#cb119-2"></a><span class="st">                           </span>Education_Level<span class="op">+</span>Marital_Status<span class="op">+</span>Income_Category<span class="op">+</span></span>
+<span id="cb119-3"><a href="#cb119-3"></a><span class="st">                           </span>Card_Category<span class="op">+</span>Months_on_book<span class="op">+</span></span>
+<span id="cb119-4"><a href="#cb119-4"></a><span class="st">                           </span>Total_Relationship_Count<span class="op">+</span>Months_Inactive_<span class="dv">12</span>_mon</span>
+<span id="cb119-5"><a href="#cb119-5"></a>                         <span class="op">+</span>Contacts_Count_<span class="dv">12</span>_mon<span class="op">+</span>Total_Revolving_Bal<span class="op">+</span></span>
+<span id="cb119-6"><a href="#cb119-6"></a><span class="st">                           </span>Total_Trans_Amt<span class="op">+</span>Total_Trans_Ct,</span>
+<span id="cb119-7"><a href="#cb119-7"></a>                         <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>,data)</span>
+<span id="cb119-8"><a href="#cb119-8"></a><span class="kw">summary</span>(logisticModelFull)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = Attrition_Flag ~ Customer_Age + Gender + Dependent_count + 
+##     Education_Level + Marital_Status + Income_Category + Card_Category + 
+##     Months_on_book + Total_Relationship_Count + Months_Inactive_12_mon + 
+##     Contacts_Count_12_mon + Total_Revolving_Bal + Total_Trans_Amt + 
+##     Total_Trans_Ct, family = &quot;binomial&quot;, data = data)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.9222  -0.3986  -0.1880  -0.0749   3.5550  
+## 
+## Coefficients:
+##                                 Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)                    4.409e+00  4.167e-01  10.581  &lt; 2e-16 ***
+## Customer_Age                  -5.469e-03  7.310e-03  -0.748 0.454402    
+## GenderM                       -8.969e-01  1.402e-01  -6.399 1.56e-10 ***
+## Dependent_count                1.324e-01  2.859e-02   4.633 3.61e-06 ***
+## Education_LevelDoctorate       4.139e-01  1.968e-01   2.104 0.035405 *  
+## Education_LevelGraduate        2.698e-02  1.335e-01   0.202 0.839918    
+## Education_LevelHigh School    -1.604e-02  1.427e-01  -0.112 0.910500    
+## Education_LevelPost-Graduate   3.408e-01  1.947e-01   1.751 0.080008 .  
+## Education_LevelUneducated      3.180e-02  1.505e-01   0.211 0.832666    
+## Education_LevelUnknown         1.405e-01  1.480e-01   0.949 0.342391    
+## Marital_StatusMarried         -5.162e-01  1.459e-01  -3.537 0.000405 ***
+## Marital_StatusSingle           1.069e-01  1.467e-01   0.728 0.466352    
+## Marital_StatusUnknown          1.694e-02  1.872e-01   0.091 0.927862    
+## Income_Category$40K - $60K    -6.645e-01  1.800e-01  -3.692 0.000222 ***
+## Income_Category$60K - $80K    -5.414e-01  1.662e-01  -3.257 0.001126 ** 
+## Income_Category$80K - $120K   -2.987e-01  1.598e-01  -1.869 0.061574 .  
+## Income_CategoryLess than $40K -5.332e-01  1.946e-01  -2.740 0.006143 ** 
+## Income_CategoryUnknown        -6.816e-01  2.176e-01  -3.132 0.001737 ** 
+## Card_CategoryGold              7.818e-01  3.264e-01   2.395 0.016601 *  
+## Card_CategoryPlatinum          7.040e-01  6.613e-01   1.065 0.287042    
+## Card_CategorySilver            1.279e-01  1.665e-01   0.768 0.442323    
+## Months_on_book                -4.760e-03  7.322e-03  -0.650 0.515651    
+## Total_Relationship_Count      -4.624e-01  2.628e-02 -17.595  &lt; 2e-16 ***
+## Months_Inactive_12_mon         4.991e-01  3.644e-02  13.695  &lt; 2e-16 ***
+## Contacts_Count_12_mon          5.363e-01  3.491e-02  15.361  &lt; 2e-16 ***
+## Total_Revolving_Bal           -1.001e-03  4.449e-05 -22.501  &lt; 2e-16 ***
+## Total_Trans_Amt                4.418e-04  2.218e-05  19.919  &lt; 2e-16 ***
+## Total_Trans_Ct                -1.185e-01  3.517e-03 -33.695  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 8927.2  on 10126  degrees of freedom
+## Residual deviance: 5102.4  on 10099  degrees of freedom
+## AIC: 5158.4
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<p>Dentro del resumen de los resultados del modelo obtenemos que las siguientes variables son estadísticamente signficativas: Gender, Dependent_count, Educational_Level, Marital_Status, Income_Category,Card_Category, Total_Relationship_Count, Months_Inactive_12_mon, Contacts_Count_12_mon, Total_Revolving_Bal, Total_Trans_Amt y Total_Trans_Ct.</p>
+<p>Sin embargo, utilizaremos la función <code>stepAIC</code> de R, la cual realiza la selección del modelo paso a paso por el criterio de información de Akaike (AIC), el cual es una medida de calidad relativa de un modelo estadístico.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1"></a>logisticModelNew &lt;-<span class="st">  </span><span class="kw">stepAIC</span>(logisticModelFull, <span class="dt">trace =</span> <span class="dv">0</span>)</span>
+<span id="cb121-2"><a href="#cb121-2"></a><span class="kw">summary</span>(logisticModelNew)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = Attrition_Flag ~ Customer_Age + Gender + Dependent_count + 
+##     Marital_Status + Income_Category + Card_Category + Total_Relationship_Count + 
+##     Months_Inactive_12_mon + Contacts_Count_12_mon + Total_Revolving_Bal + 
+##     Total_Trans_Amt + Total_Trans_Ct, family = &quot;binomial&quot;, data = data)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.9538  -0.3956  -0.1889  -0.0761   3.5570  
+## 
+## Coefficients:
+##                                 Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)                    4.490e+00  4.033e-01  11.133  &lt; 2e-16 ***
+## Customer_Age                  -9.203e-03  4.520e-03  -2.036 0.041754 *  
+## GenderM                       -8.999e-01  1.400e-01  -6.426 1.31e-10 ***
+## Dependent_count                1.320e-01  2.854e-02   4.625 3.74e-06 ***
+## Marital_StatusMarried         -5.190e-01  1.456e-01  -3.565 0.000364 ***
+## Marital_StatusSingle           1.039e-01  1.464e-01   0.710 0.477799    
+## Marital_StatusUnknown          8.944e-03  1.867e-01   0.048 0.961799    
+## Income_Category$40K - $60K    -6.608e-01  1.797e-01  -3.678 0.000235 ***
+## Income_Category$60K - $80K    -5.346e-01  1.661e-01  -3.219 0.001287 ** 
+## Income_Category$80K - $120K   -2.966e-01  1.596e-01  -1.859 0.063098 .  
+## Income_CategoryLess than $40K -5.312e-01  1.943e-01  -2.734 0.006264 ** 
+## Income_CategoryUnknown        -6.698e-01  2.175e-01  -3.080 0.002071 ** 
+## Card_CategoryGold              7.772e-01  3.272e-01   2.376 0.017525 *  
+## Card_CategoryPlatinum          7.858e-01  6.609e-01   1.189 0.234449    
+## Card_CategorySilver            1.240e-01  1.662e-01   0.746 0.455575    
+## Total_Relationship_Count      -4.635e-01  2.625e-02 -17.656  &lt; 2e-16 ***
+## Months_Inactive_12_mon         4.948e-01  3.620e-02  13.670  &lt; 2e-16 ***
+## Contacts_Count_12_mon          5.372e-01  3.488e-02  15.401  &lt; 2e-16 ***
+## Total_Revolving_Bal           -1.001e-03  4.441e-05 -22.538  &lt; 2e-16 ***
+## Total_Trans_Amt                4.416e-04  2.216e-05  19.932  &lt; 2e-16 ***
+## Total_Trans_Ct                -1.184e-01  3.514e-03 -33.689  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 8927.2  on 10126  degrees of freedom
+## Residual deviance: 5113.0  on 10106  degrees of freedom
+## AIC: 5155
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<p>Finalmente mediante esta función se elige el modelo con las siguientes variables: Customer_Age, Gender, Dependent_count, Marital_Status, Income_Category, Card_Category, Total_Relationship_Count, Months_Inactive_12_mon, Contacts_Count_12_mon, Total_Revolving_Bal, Total_Trans_Amt, Total_Trans_Ct.</p>
+</div>
+<div id="validación-cruzada" class="section level3">
+<h3><span class="header-section-number">9.3.4</span> Validación cruzada</h3>
+<p>Por otra parte realizaremos un acercamiento con validación cruzada con el modelo anteriormente visto, y observar si se realizan algunos cambios dentro del modelo, en particular se utilizará el método Validación cruzada de K-fold. Recordando que este método evalúa el rendimiento del modelo en diferentes subconjuntos de los datos de entrenamiento y luego calcula la tasa de error de predicción promedio. En la práctica, normalmente se realiza una validación cruzada de k veces utilizando <span class="math inline">\(k=5\)</span> o <span class="math inline">\(k=10\)</span>, por lo cual utilizaremos <span class="math inline">\(k=10\)</span>.</p>
+<p>Primero, se decide realizar una división en los conjuntos de datos de entrenamiento y de prueba. En este caso se genera una variable aleatoria que toma valores 1 y 0 gracias a que proviene de una distribución binomial con una probabilidad de 0.66.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1"></a><span class="kw">library</span>(caret)</span>
+<span id="cb123-2"><a href="#cb123-2"></a><span class="kw">set.seed</span>(<span class="dv">27345</span>)</span>
+<span id="cb123-3"><a href="#cb123-3"></a></span>
+<span id="cb123-4"><a href="#cb123-4"></a>data<span class="op">$</span>isTrain &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="kw">nrow</span>(data),<span class="dv">1</span>,<span class="fl">0.66</span>)</span>
+<span id="cb123-5"><a href="#cb123-5"></a>train &lt;-<span class="st">  </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(data<span class="op">$</span>isTrain <span class="op">==</span><span class="st">&quot;1&quot;</span>)</span>
+<span id="cb123-6"><a href="#cb123-6"></a>test &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">filter</span>(data<span class="op">$</span>isTrain <span class="op">==</span><span class="st"> &quot;0&quot;</span>)</span>
+<span id="cb123-7"><a href="#cb123-7"></a>train_control &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="dt">number =</span> <span class="dv">10</span>)</span>
+<span id="cb123-8"><a href="#cb123-8"></a>model &lt;-<span class="st"> </span><span class="kw">train</span>(Attrition_Flag <span class="op">~</span><span class="st"> </span>Customer_Age <span class="op">+</span><span class="st"> </span>Gender <span class="op">+</span><span class="st"> </span>Dependent_count <span class="op">+</span><span class="st"> </span></span>
+<span id="cb123-9"><a href="#cb123-9"></a><span class="st">                 </span>Marital_Status <span class="op">+</span><span class="st"> </span>Income_Category <span class="op">+</span><span class="st"> </span>Card_Category <span class="op">+</span><span class="st"> </span>Total_Relationship_Count <span class="op">+</span><span class="st"> </span></span>
+<span id="cb123-10"><a href="#cb123-10"></a><span class="st">                 </span>Months_Inactive_<span class="dv">12</span>_mon <span class="op">+</span><span class="st"> </span>Contacts_Count_<span class="dv">12</span>_mon <span class="op">+</span><span class="st"> </span>Total_Revolving_Bal <span class="op">+</span><span class="st"> </span></span>
+<span id="cb123-11"><a href="#cb123-11"></a><span class="st">                 </span>Total_Trans_Amt <span class="op">+</span><span class="st"> </span>Total_Trans_Ct,</span>
+<span id="cb123-12"><a href="#cb123-12"></a>               <span class="dt">data =</span> train,</span>
+<span id="cb123-13"><a href="#cb123-13"></a>               <span class="dt">trControl =</span> train_control,</span>
+<span id="cb123-14"><a href="#cb123-14"></a>               <span class="dt">method =</span> <span class="st">&quot;glm&quot;</span>,</span>
+<span id="cb123-15"><a href="#cb123-15"></a>               <span class="dt">family=</span><span class="kw">binomial</span>())</span>
+<span id="cb123-16"><a href="#cb123-16"></a><span class="kw">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## NULL
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.8534  -0.4067  -0.1933  -0.0801   3.4678  
+## 
+## Coefficients:
+##                                   Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)                      4.605e+00  4.870e-01   9.457  &lt; 2e-16 ***
+## Customer_Age                    -1.309e-02  5.511e-03  -2.375 0.017526 *  
+## GenderM                         -6.875e-01  1.639e-01  -4.195 2.73e-05 ***
+## Dependent_count                  1.436e-01  3.499e-02   4.105 4.05e-05 ***
+## Marital_StatusMarried           -5.538e-01  1.747e-01  -3.171 0.001519 ** 
+## Marital_StatusSingle             4.502e-02  1.754e-01   0.257 0.797391    
+## Marital_StatusUnknown           -8.831e-02  2.258e-01  -0.391 0.695691    
+## `Income_Category$40K - $60K`    -6.204e-01  2.148e-01  -2.888 0.003871 ** 
+## `Income_Category$60K - $80K`    -7.223e-01  2.025e-01  -3.567 0.000362 ***
+## `Income_Category$80K - $120K`   -5.346e-01  1.929e-01  -2.772 0.005579 ** 
+## `Income_CategoryLess than $40K` -4.703e-01  2.300e-01  -2.045 0.040890 *  
+## Income_CategoryUnknown          -7.046e-01  2.601e-01  -2.709 0.006747 ** 
+## Card_CategoryGold                5.179e-01  4.146e-01   1.249 0.211686    
+## Card_CategoryPlatinum            3.926e-01  8.026e-01   0.489 0.624742    
+## Card_CategorySilver              1.356e-01  2.022e-01   0.670 0.502631    
+## Total_Relationship_Count        -4.285e-01  3.183e-02 -13.460  &lt; 2e-16 ***
+## Months_Inactive_12_mon           4.797e-01  4.407e-02  10.885  &lt; 2e-16 ***
+## Contacts_Count_12_mon            5.059e-01  4.245e-02  11.919  &lt; 2e-16 ***
+## Total_Revolving_Bal             -9.920e-04  5.433e-05 -18.260  &lt; 2e-16 ***
+## Total_Trans_Amt                  4.576e-04  2.674e-05  17.115  &lt; 2e-16 ***
+## Total_Trans_Ct                  -1.187e-01  4.286e-03 -27.697  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 5886.8  on 6657  degrees of freedom
+## Residual deviance: 3418.5  on 6637  degrees of freedom
+## AIC: 3460.5
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<p>Sin embargo, se observamos que Card_Category no es estadísticamente significativa en ninguno de sus niveles por lo cual volvemos a plantear el modelo sin dicha categoría.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1"></a><span class="kw">library</span>(caret)</span>
+<span id="cb125-2"><a href="#cb125-2"></a><span class="kw">set.seed</span>(<span class="dv">27345</span>)</span>
+<span id="cb125-3"><a href="#cb125-3"></a></span>
+<span id="cb125-4"><a href="#cb125-4"></a>data<span class="op">$</span>isTrain &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="kw">nrow</span>(data),<span class="dv">1</span>,<span class="fl">0.66</span>)</span>
+<span id="cb125-5"><a href="#cb125-5"></a>train &lt;-<span class="st">  </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(data<span class="op">$</span>isTrain <span class="op">==</span><span class="st">&quot;1&quot;</span>)</span>
+<span id="cb125-6"><a href="#cb125-6"></a>test &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">filter</span>(data<span class="op">$</span>isTrain <span class="op">==</span><span class="st"> &quot;0&quot;</span>)</span>
+<span id="cb125-7"><a href="#cb125-7"></a>train_control &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="dt">number =</span> <span class="dv">10</span>)</span>
+<span id="cb125-8"><a href="#cb125-8"></a>model &lt;-<span class="st"> </span><span class="kw">train</span>(Attrition_Flag <span class="op">~</span><span class="st"> </span>Customer_Age <span class="op">+</span><span class="st"> </span>Gender <span class="op">+</span><span class="st"> </span>Dependent_count <span class="op">+</span><span class="st"> </span></span>
+<span id="cb125-9"><a href="#cb125-9"></a><span class="st">                 </span>Marital_Status <span class="op">+</span><span class="st"> </span>Income_Category <span class="op">+</span><span class="st"> </span>Total_Relationship_Count <span class="op">+</span><span class="st"> </span></span>
+<span id="cb125-10"><a href="#cb125-10"></a><span class="st">                 </span>Months_Inactive_<span class="dv">12</span>_mon <span class="op">+</span><span class="st"> </span>Contacts_Count_<span class="dv">12</span>_mon <span class="op">+</span><span class="st"> </span>Total_Revolving_Bal <span class="op">+</span><span class="st"> </span></span>
+<span id="cb125-11"><a href="#cb125-11"></a><span class="st">                 </span>Total_Trans_Amt <span class="op">+</span><span class="st"> </span>Total_Trans_Ct,</span>
+<span id="cb125-12"><a href="#cb125-12"></a>               <span class="dt">data =</span> train,</span>
+<span id="cb125-13"><a href="#cb125-13"></a>               <span class="dt">trControl =</span> train_control,</span>
+<span id="cb125-14"><a href="#cb125-14"></a>               <span class="dt">method =</span> <span class="st">&quot;glm&quot;</span>,</span>
+<span id="cb125-15"><a href="#cb125-15"></a>               <span class="dt">family=</span><span class="kw">binomial</span>())</span>
+<span id="cb125-16"><a href="#cb125-16"></a><span class="kw">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## NULL
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.6688  -0.4076  -0.1935  -0.0800   3.4660  
+## 
+## Coefficients:
+##                                   Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)                      4.615e+00  4.867e-01   9.483  &lt; 2e-16 ***
+## Customer_Age                    -1.295e-02  5.504e-03  -2.353 0.018648 *  
+## GenderM                         -6.877e-01  1.638e-01  -4.199 2.69e-05 ***
+## Dependent_count                  1.439e-01  3.498e-02   4.115 3.88e-05 ***
+## Marital_StatusMarried           -5.622e-01  1.746e-01  -3.220 0.001280 ** 
+## Marital_StatusSingle             4.266e-02  1.754e-01   0.243 0.807870    
+## Marital_StatusUnknown           -8.391e-02  2.258e-01  -0.372 0.710163    
+## `Income_Category$40K - $60K`    -6.281e-01  2.149e-01  -2.923 0.003466 ** 
+## `Income_Category$60K - $80K`    -7.253e-01  2.027e-01  -3.578 0.000347 ***
+## `Income_Category$80K - $120K`   -5.370e-01  1.930e-01  -2.782 0.005397 ** 
+## `Income_CategoryLess than $40K` -4.803e-01  2.300e-01  -2.088 0.036796 *  
+## Income_CategoryUnknown          -7.114e-01  2.600e-01  -2.736 0.006225 ** 
+## Total_Relationship_Count        -4.292e-01  3.183e-02 -13.484  &lt; 2e-16 ***
+## Months_Inactive_12_mon           4.786e-01  4.403e-02  10.869  &lt; 2e-16 ***
+## Contacts_Count_12_mon            5.060e-01  4.242e-02  11.927  &lt; 2e-16 ***
+## Total_Revolving_Bal             -9.895e-04  5.424e-05 -18.242  &lt; 2e-16 ***
+## Total_Trans_Amt                  4.609e-04  2.653e-05  17.375  &lt; 2e-16 ***
+## Total_Trans_Ct                  -1.187e-01  4.281e-03 -27.740  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 5886.8  on 6657  degrees of freedom
+## Residual deviance: 3420.5  on 6640  degrees of freedom
+## AIC: 3456.5
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<p>Algo que podemos observar teniendo en cuenta la validación cruzada junto con el modelo anteriormente propuesto es el valor del Criterio de Akaike que toma. Por ejemplo, para el modelo <em>LogisticModelNew</em> tenemos un valor de <span class="math inline">\(AIC=5155\)</span> mientras que para el modelo con validación cruzada se tiene un valor de <span class="math inline">\(AIC=3456.5\)</span>. Esto podría llegar a ser un indicador, para tener en cuenta una metodología (K-Fold) sobre otra.</p>
+<hr />
 </div>
 </div>
-<div id="representación-de-los-resultados-a-partir-de-tablas-y-gráficas." class="section level1">
-<h1><span class="header-section-number">10</span> Representación de los resultados a partir de tablas y gráficas.</h1>
-<div id="interpretacion-de-coeficientes-odds" class="section level2">
-<h2><span class="header-section-number">10.1</span> Interpretacion de coeficientes (odds)</h2>
+</div>
+<div id="representación-de-los-resultados-a-partir-de-tablas-y-gráficas" class="section level1">
+<h1><span class="header-section-number">10</span> Representación de los resultados a partir de tablas y gráficas</h1>
+<hr />
+<div id="modelo-de-regresión-lineal" class="section level2">
+<h2><span class="header-section-number">10.1</span> Modelo de regresión lineal</h2>
+<div id="interpretación-de-coeficientes-odds" class="section level3">
+<h3><span class="header-section-number">10.1.1</span> Interpretación de coeficientes (odds)</h3>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1"></a>odds &lt;-<span class="st">  </span><span class="kw">coef</span>(logisticModelNew) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">exp</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">2</span>)</span>
+<span id="cb127-2"><a href="#cb127-2"></a>odds</span></code></pre></div>
+<pre><code>##                   (Intercept)                  Customer_Age 
+##                         89.15                          0.99 
+##                       GenderM               Dependent_count 
+##                          0.41                          1.14 
+##         Marital_StatusMarried          Marital_StatusSingle 
+##                          0.60                          1.11 
+##         Marital_StatusUnknown    Income_Category$40K - $60K 
+##                          1.01                          0.52 
+##    Income_Category$60K - $80K   Income_Category$80K - $120K 
+##                          0.59                          0.74 
+## Income_CategoryLess than $40K        Income_CategoryUnknown 
+##                          0.59                          0.51 
+##             Card_CategoryGold         Card_CategoryPlatinum 
+##                          2.18                          2.19 
+##           Card_CategorySilver      Total_Relationship_Count 
+##                          1.13                          0.63 
+##        Months_Inactive_12_mon         Contacts_Count_12_mon 
+##                          1.64                          1.71 
+##           Total_Revolving_Bal               Total_Trans_Amt 
+##                          1.00                          1.00 
+##                Total_Trans_Ct 
+##                          0.89</code></pre>
+<p>Una breve interpretación de los resultados obtenidos con los coeficientes u “odds”, puede ser la siguiente:</p>
+<ul>
+<li>Los usuarios que se encuentran solteros aumentan la tasa de abandono en un 11%.<br />
+</li>
+<li>Dentro de los usuarios que tienen diferentes categorías de tarjetas se tiene que aquellos que tienen la categoría platino aumentan la tasa de abandono en un 119%.<br />
+</li>
+<li>Una relación inversa que observamos la tasa de abandono es un 59% menor si el usuario es de género masculino comparado con las usuarias femeninas.</li>
+</ul>
+</div>
+<div id="predicciones" class="section level3">
+<h3><span class="header-section-number">10.1.2</span> Predicciones</h3>
+<p>Se realiza el modelo escogido anteriormente con el conjunto de datos de entrenamiento, y se realizan las predicciones con la función <code>predict</code> sobre el conjunto de datos de prueba.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1"></a>LogisticTrainNew &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="dt">formula =</span> Attrition_Flag <span class="op">~</span><span class="st"> </span>Customer_Age <span class="op">+</span><span class="st"> </span>Gender <span class="op">+</span><span class="st"> </span>Dependent_count <span class="op">+</span><span class="st"> </span></span>
+<span id="cb129-2"><a href="#cb129-2"></a><span class="st">                          </span>Marital_Status <span class="op">+</span><span class="st"> </span>Income_Category <span class="op">+</span><span class="st"> </span>Card_Category <span class="op">+</span><span class="st"> </span>Total_Relationship_Count <span class="op">+</span><span class="st"> </span></span>
+<span id="cb129-3"><a href="#cb129-3"></a><span class="st">                          </span>Months_Inactive_<span class="dv">12</span>_mon <span class="op">+</span><span class="st"> </span>Contacts_Count_<span class="dv">12</span>_mon <span class="op">+</span><span class="st"> </span>Total_Revolving_Bal <span class="op">+</span><span class="st"> </span></span>
+<span id="cb129-4"><a href="#cb129-4"></a><span class="st">                          </span>Total_Trans_Amt <span class="op">+</span><span class="st"> </span>Total_Trans_Ct, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> train)</span>
+<span id="cb129-5"><a href="#cb129-5"></a></span>
+<span id="cb129-6"><a href="#cb129-6"></a><span class="co">#prediction </span></span>
+<span id="cb129-7"><a href="#cb129-7"></a>test<span class="op">$</span>predictNew &lt;-<span class="st"> </span><span class="kw">predict</span>(LogisticTrainNew , <span class="dt">type =</span> <span class="st">&quot;response&quot;</span> , <span class="dt">newdata =</span> test)</span></code></pre></div>
+<p>Para revisar que tan bien el modelo logístico predice los valores del conjunto de prueba se procede a realizar la matriz de confusión.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb130-2"><a href="#cb130-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb130-3"><a href="#cb130-3"></a><span class="kw">library</span>(boot)</span>
+<span id="cb130-4"><a href="#cb130-4"></a><span class="kw">library</span>(e1071)</span>
+<span id="cb130-5"><a href="#cb130-5"></a>predicciones=<span class="kw">as.factor</span>(<span class="kw">ifelse</span>(<span class="dt">test =</span> test<span class="op">$</span>predictNew <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.35</span>, <span class="dt">yes =</span> <span class="dv">1</span>, <span class="dt">no =</span> <span class="dv">0</span>))</span>
+<span id="cb130-6"><a href="#cb130-6"></a>observaciones=<span class="kw">as.factor</span>(test<span class="op">$</span>Attrition_Flag)</span>
+<span id="cb130-7"><a href="#cb130-7"></a>matriz&lt;-<span class="kw">confusionMatrix</span>(observaciones, predicciones)</span>
+<span id="cb130-8"><a href="#cb130-8"></a>matriz</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction    0    1
+##          0 2694  223
+##          1  163  389
+##                                          
+##                Accuracy : 0.8887         
+##                  95% CI : (0.8778, 0.899)
+##     No Information Rate : 0.8236         
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16      
+##                                          
+##                   Kappa : 0.6017         
+##                                          
+##  Mcnemar&#39;s Test P-Value : 0.002673       
+##                                          
+##             Sensitivity : 0.9429         
+##             Specificity : 0.6356         
+##          Pos Pred Value : 0.9236         
+##          Neg Pred Value : 0.7047         
+##              Prevalence : 0.8236         
+##          Detection Rate : 0.7766         
+##    Detection Prevalence : 0.8409         
+##       Balanced Accuracy : 0.7893         
+##                                          
+##        &#39;Positive&#39; Class : 0              
+## </code></pre>
+<p>Como podemos observar, el modelo de regresión logística planteado nos da un nivel de exactitud de 88.87%, lo cual nos puede indicar la falta de variables exógenas que nos ayuden a modelar nuestro datos actuales.</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1"></a><span class="kw">library</span>(pROC)</span>
+<span id="cb132-2"><a href="#cb132-2"></a>test_prob =<span class="st"> </span><span class="kw">predict</span>(logisticModelNew, <span class="dt">newdata =</span> test, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb132-3"><a href="#cb132-3"></a>test_roc =<span class="st"> </span><span class="kw">roc</span>(test<span class="op">$</span>Attrition_Flag <span class="op">~</span><span class="st"> </span>test_prob, <span class="dt">plot =</span> <span class="ot">TRUE</span>, <span class="dt">print.auc =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" width="672" /></p>
+<p>Por otra parte se realiza la gráfica ROC en la cual contiene también el valor de AUC (más conocida como el área bajo la curva ROC), hay que recordar que este valor varía entre 0 y 1, donde un modelo cuyas predicciones son un 100% incorrectas tiene un AUC de 0.0, y donde sus predicciones son de un 100% correctas entonces su valor de AUC asociado es de 1.0.<br />
+En nuestro caso, obtuvimos un valor de AUC igual a 0.922 lo cual nos indica que las predicciones que se están haciendo se desvían un poco pero están cerca de pertenecer a un modelo “perfecto”.</p>
 </div>
 </div>
-<div id="resolución-del-problema.-a-partir-de-los-resultados-obtenidos-cuáles-son-las-conclusiones-los-resultados-permiten-responder-al-problema" class="section level1">
-<h1><span class="header-section-number">11</span> Resolución del problema. A partir de los resultados obtenidos, ¿cuáles son las conclusiones? ¿Los resultados permiten responder al problema?</h1>
+<div id="modelo-de-regresión-lineal-con-validación-cruzada" class="section level2">
+<h2><span class="header-section-number">10.2</span> Modelo de regresión lineal con validación cruzada</h2>
+<p>Para el modelo de regresión logística con validación cruzada se realizan las correspondientes predicciones para el conjunto de datos de test y generamos la curva ROC.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb133-2"><a href="#cb133-2"></a><span class="kw">library</span>(ROCR)</span>
+<span id="cb133-3"><a href="#cb133-3"></a></span>
+<span id="cb133-4"><a href="#cb133-4"></a>predict0 &lt;-<span class="st"> </span><span class="kw">predict</span>(model, <span class="dt">type =</span> <span class="st">&#39;raw&#39;</span>,test)</span>
+<span id="cb133-5"><a href="#cb133-5"></a>ROCRpred0 &lt;-<span class="st"> </span><span class="kw">prediction</span>(<span class="kw">as.numeric</span>(predict0),<span class="kw">as.numeric</span>(test<span class="op">$</span>Attrition_Flag))</span>
+<span id="cb133-6"><a href="#cb133-6"></a>ROCRperf0&lt;-<span class="st"> </span><span class="kw">performance</span>(ROCRpred0, <span class="st">&#39;tpr&#39;</span>, <span class="st">&#39;fpr&#39;</span>)</span>
+<span id="cb133-7"><a href="#cb133-7"></a><span class="kw">plot</span>(ROCRperf0, <span class="dt">colorize=</span><span class="ot">TRUE</span>, <span class="dt">text.adj=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.2</span>,<span class="fl">1.7</span>))</span></code></pre></div>
+<p><img src="data:image/png;base64,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" width="672" /></p>
+<p>Por otra parte, comparando las predicciones generadas por el método de validación cruzada no varían comparado con el modelo anteriormente presentado, al igual que los valores de precisión, sensibilidad y especificidad.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1"></a>predicciones2=<span class="kw">as.factor</span>(<span class="kw">ifelse</span>(<span class="dt">test =</span> predict0 <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.35</span>, <span class="dt">yes =</span> <span class="dv">1</span>, <span class="dt">no =</span> <span class="dv">0</span>))</span>
+<span id="cb134-2"><a href="#cb134-2"></a>observaciones2=<span class="kw">as.factor</span>(test<span class="op">$</span>Attrition_Flag)</span>
+<span id="cb134-3"><a href="#cb134-3"></a>matriz2&lt;-<span class="kw">confusionMatrix</span>(observaciones2, predicciones2)</span>
+<span id="cb134-4"><a href="#cb134-4"></a>matriz2</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction    0    1
+##          0 2693  224
+##          1  165  387
+##                                           
+##                Accuracy : 0.8879          
+##                  95% CI : (0.8769, 0.8982)
+##     No Information Rate : 0.8239          
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
+##                                           
+##                   Kappa : 0.5984          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 0.003275        
+##                                           
+##             Sensitivity : 0.9423          
+##             Specificity : 0.6334          
+##          Pos Pred Value : 0.9232          
+##          Neg Pred Value : 0.7011          
+##              Prevalence : 0.8239          
+##          Detection Rate : 0.7763          
+##    Detection Prevalence : 0.8409          
+##       Balanced Accuracy : 0.7878          
+##                                           
+##        &#39;Positive&#39; Class : 0               
+## </code></pre>
+<hr />
 </div>
-<div id="código-hay-que-adjuntar-el-código-preferiblemente-en-r-con-el-que-se-ha-realizado-la-limpieza-análisis-y-representación-de-los-datos.-si-lo-preferís-también-podéis-trabajar-en-python." class="section level1">
-<h1><span class="header-section-number">12</span> Código: Hay que adjuntar el código, preferiblemente en R, con el que se ha realizado la limpieza, análisis y representación de los datos. Si lo preferís, también podéis trabajar en Python.</h1>
-<p>Project Link:<a href="https://github.com/wickedlexie/AnalisisPRA2" class="uri">https://github.com/wickedlexie/AnalisisPRA2</a></p>
+</div>
+<div id="resolución-del-problema." class="section level1">
+<h1><span class="header-section-number">11</span> Resolución del problema.</h1>
+<hr />
+<p><strong>A partir de los resultados obtenidos, ¿cuáles son las conclusiones?, ¿Los resultados permiten responder al problema?</strong></p>
+<p>Teniendo en cuenta los resultados por ejemplo de la exactitud y la precisión presentados dentro del código se recomendaría el poder utilizar nuevas variables que nos ayuden a encontrar relaciones escondidas dentro de los datos y generen un mejor modelo con una exactitud y precisión más alta. Sin embargo los resultados actuales que se tienen del modelo de regresión logística son bastante buenos teniendo en cuenta la calidad y cantidad de datos que se obtuvieron para la realización de la práctica. Otra opción que tendríamos a futuro, sería plantear otros tipos de modelos que se comparen con el modelo actual. Por ejemplo: un árbol de decisión, clustering e inclusive redes neuronales para manejar las relaciones complejas que no se pueden detectar utilizando otros modelos anteriormente mencionados.</p>
+<p>Por otra parte, respondiendo a nuestra pregunta planteada y a partir de los resultados obtenidos mediante el modelo de regresión logística podemos modelar y predecir a cierto nivel la deserción de los clientes dentro de esta entidad bancaria.</p>
+<hr />
+</div>
+<div id="código" class="section level1">
+<h1><span class="header-section-number">12</span> Código</h1>
+<hr />
+<p><strong>Hay que adjuntar el código, preferiblemente en R, con el que se ha realizado la limpieza, análisis y representación de los datos. Si lo preferís, también podéis trabajar en Python.</strong></p>
+<p>Project Link: <a href="https://github.com/wickedlexie/AnalisisPRA2" class="uri">https://github.com/wickedlexie/AnalisisPRA2</a></p>
+<hr />
 </div>
 <div id="recursos" class="section level1">
 <h1><span class="header-section-number">13</span> Recursos</h1>
+<hr />
 <p>Los siguientes recursos son de utilidad para la realización de la práctica:</p>
 <p>● Calvo M., Subirats L., Pérez D. (2019). Introducción a la limpieza y análisis de los datos. Editorial UOC.<br />
 ● Megan Squire (2015). Clean Data. Packt Publishing Ltd.<br />
@@ -2523,17 +3060,21 @@ David Dávila y Mónica Gómez
 ● Peter Dalgaard (2008). Introductory statistics with R. Springer Science &amp; Business Media.<br />
 ● Wes McKinney (2012). Python for Data Analysis. O’Reilley Media, Inc.<br />
 ● Tutorial de Github: <a href="https://guides.github.com/activities/hello-world" class="uri">https://guides.github.com/activities/hello-world</a>.</p>
+<hr />
 </div>
 <div id="criterios-de-valoración" class="section level1">
 <h1><span class="header-section-number">14</span> Criterios de valoración</h1>
+<hr />
 <p>Todos los apartados son obligatorios. La ponderación de los ejercicios es la siguiente:</p>
 <p>Los apartados 1, 2 y 6 valen 0,5 puntos.<br />
 Los apartados 3, 5 y 7 valen 2 puntos.<br />
 El apartado 4 vale 2,5 puntos.</p>
 <p>Se valorará la idoneidad de las respuestas, que deberán ser claras y completas. Las diferentes etapas deberán justificarse y acompañarse del código correspondiente. También se valorará la síntesis y claridad, a través del uso de comentarios, del código resultante, así como la calidad de los datos finales analizados.</p>
+<hr />
 </div>
 <div id="formato-y-fecha-de-entrega" class="section level1">
 <h1><span class="header-section-number">15</span> Formato y fecha de entrega</h1>
+<hr />
 <p>Durante la semana del 21 al 25 de diciembre el grupo podrá entregar al profesor una entrega parcial opcional. Esta entrega parcial es muy recomendable para recibir asesoramiento sobre la práctica y verificar que la dirección tomada es la correcta. Se entregarán comentarios a los estudiantes que hayan efectuado la entrega parcial pero no contará para la nota de la práctica.</p>
 <p>En la entrega parcial los estudiantes deberán entregar por correo electrónico, al profesor encargado del aula, el enlace al repositorio Github con el que hayan avanzado.</p>
 <p>En referente a la entrega final, hay que entregar un único fichero que contenga el enlace Github, el cual no se podrá modificar posteriormente a la fecha de entrega, donde haya:</p>
