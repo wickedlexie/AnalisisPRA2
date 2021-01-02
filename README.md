@@ -6,9 +6,9 @@ El actual repositorio contiene los archivos relacionados con la Práctica 2 y se
 
 **BankChurners_clean.csv:** Contiene la información preprocesada de los datos originales.
 
-**M2.851_20201_Pra¿ctica2.pdf:** Contiene las respuestas de la práctica.
+**PRA2.pdf:** Contiene el documento con las respuestas de la práctica.
 
-**PRA2_Limpieza.Rmd:** Contiene el código de R en el cual se encuentra el proceso de limpieza y modelado de los datos.
+**PRA2.Rmd:** Contiene el código de R en el cual se encuentra el proceso de limpieza y modelado de los datos.
 
 Este proyecto ha sido desarrollado y elaborado por:
 
